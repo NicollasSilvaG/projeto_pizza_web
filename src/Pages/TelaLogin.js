@@ -1,23 +1,26 @@
 import React from "react";
-import StyleTelaLogin from "../Styles/StyleTelaLogin.css";
+import "../Styles/StyleTelaLogin.css"; // Correto import do CSS
 
 export default function TelaLogin() {
     return (
-       
-            <div className="login-container">
-            <h1>Login</h1>
-            <form id="loginForm">
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" placeholder="Digite seu email" required />
+        <div className="tela-login">
+            <div className="elemento">
+                <div className="login-container">
+                    <h1>Entrar</h1>
+                    <form id="loginForm">
+                        <div className="input-group">
+                            <label htmlFor="email"></label>
+                            <input type="email" id="email" placeholder="Digite seu email" required />
+                        </div>
+                        <div className="input-group">
+                            <label htmlFor="password"></label>
+                            <input type="password" id="password" placeholder="Digite sua senha" required />
+                        </div>
+                        <p>Esqueceu sua senha?</p>
+                        <button type="submit">Acessar</button>
+                    </form>
                 </div>
-                <div className="input-group">
-                    <label htmlFor="password">Senha</label>
-                    <input type="password" id="password" placeholder="Digite sua senha" required />
-                </div>
-                <button type="submit">Entrar</button>
-            </form>
+            </div>
         </div>
-      
     );
 }
