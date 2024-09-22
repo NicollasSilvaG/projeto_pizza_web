@@ -1,0 +1,16 @@
+.appbar {
+    background-color: #2B1C1C !important;  
+  }
+.title{
+    text-align:center  !important;
+    
+}
+  
+  .container {
+    padding: 20px;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
+  
