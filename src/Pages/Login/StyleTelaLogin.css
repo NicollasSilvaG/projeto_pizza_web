@@ -1,10 +1,12 @@
 .login-page {
     background-color: #F97171 !important;
     position: relative;
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
-    height: 100vh; 
+    height: 599px; 
+    margin: -8px;
+    width: 228vh;
+    overflow: hidden;
+    
 }
 .login-page h1 {
     margin-top: -35px;
@@ -21,27 +23,27 @@
     height: 190px;
     width: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
+    
 }
 .login-page .login-container {
     width: 500px;
-    height: 280px;
+    height: 270px;
     margin: auto;
-    margin-top: 185px;
+    margin-top: 183px;
     padding: 60px;
     border-radius: 5px;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
     position: relative;
 }
 .login-page .input-group {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     
 }
 .login-page .input-group label {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     color: #333;    
     display: block;
+    font-weight: bold;
    
 }
 .login-page .input-group input {
@@ -60,7 +62,7 @@
     width: 32px; 
     height: 32px;
     position: absolute;
-    top: 102px;
+    top: 120px;
     left: 25px; 
     transform: translateY(-50%);
   }
@@ -72,7 +74,7 @@
     width: 32px; 
     height: 32px;
     position: absolute;
-    top: 165px;
+    top: 196px;
     left: 25px; 
     transform: translateY(-50%);
   } 
@@ -92,7 +94,7 @@
     background-color: #050000;
 }
 .login-page .btn-login {
-    margin-top: 50px;
+    margin-top: -10px;
     padding: 10px 93px 10px 97px ;
 }
 
@@ -100,6 +102,6 @@
     cursor: pointer;
     font-weight: bold;
     text-align: right;
-    margin: -20px 0 30px 0;
+    margin: -10px 0 30px 0;
     color: #2B1C1C;
 }

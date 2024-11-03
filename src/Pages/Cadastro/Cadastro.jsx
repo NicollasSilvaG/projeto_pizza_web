@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import StyleCadastro from './StyleCadastro.css'; 
+import './StyleCadastro.css'; 
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
@@ -22,7 +22,7 @@ const Cadastro = () => {
       return;
     }
 
-    const res = Cadastro(nome, email, senha);
+    const res = Cadastro(email, senha);
 
     if (res) {
       setError(res);

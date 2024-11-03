@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import StyleTelaLogin from "./StyleTelaLogin.css";
+import "./StyleTelaLogin.css";
 import useAuth from '../../Hooks/useAuth';
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css'; 
 
 const TelaLogin = () => {
   const { TelaLogin } = useAuth(); 
@@ -15,22 +17,27 @@ const TelaLogin = () => {
     navigate('/cadastro');
   };
 
-  const handleLogin = () => {
-    if (!email | !senha) {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (!email || !senha) {
       setError("Preencha todos os campos");
+      toast.error("Preencha todos os campos"); 
       return;
     }
     
-    
-
     const res = TelaLogin(email, senha);
 
     if (res) {
       setError(res);
+      toast.error(res); 
       return;
     }
 
-    navigate("/home");
+    navigate("/home"); 
+  };
+
+  const handleForgotPassword = () => {
+    navigate("/recuperar-senha"); 
   };
 
   return (
@@ -38,32 +45,40 @@ const TelaLogin = () => {
       <div className="elemento">
         <div className="login-container">
           <h1>Entrar</h1>
-          <form id="loginForm">
+          <form id="loginForm" onSubmit={handleLogin}>
             <div className="input-group email">
-              <label htmlFor="email"></label>
-            <input
-            type="email"
-            placeholder="Digite seu E-mail"
-            value={email}
-            onChange={(e) => [setEmail(e.target.value), setError("")]}
-            />
+              <label htmlFor="email">E-mail</label>
+              <input
+                type="email"
+                placeholder="Digite seu E-mail"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setError("");
+                }}
+                required
+              />  
             </div>
             <div className="input-group senha">
-              <label htmlFor="password"></label>
-            <input
-            type="password"
-            placeholder="Digite sua Senha"
-            value={senha}
-            onChange={(e) => [setSenha(e.target.value), setError("")]}
-            />
-            <label>{error}</label>
+              <label htmlFor="password">Senha</label>
+              <input
+                type="password"
+                placeholder="Digite sua Senha"
+                value={senha}
+                onChange={(e) => {
+                  setSenha(e.target.value);
+                  setError("");
+                }}
+                required
+              />
             </div>
-            <p>Esqueceu sua senha?</p>
-            <button class="btn-login" onClick={handleLogin}>Acessar</button>
-            <button class="btn-cadastro"onClick={handleCadastro}>Cadastre-se</button> 
+            <p className="forgot-password" onClick={handleForgotPassword}>Esqueceu sua senha?</p>             
+            <button className="btn-login" type="submit">Acessar</button>
+            <button className="btn-cadastro" type="button" onClick={handleCadastro}>Cadastre-se</button> 
           </form>
         </div>
       </div>
+      <ToastContainer /> {}
     </div>
   );
 };

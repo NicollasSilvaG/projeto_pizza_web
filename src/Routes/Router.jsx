@@ -5,6 +5,8 @@ import useAuth from '../Hooks/useAuth';
 import Home from '../Pages/Home/Home'; 
 import TelaLogin from '../Pages/Login/TelaLogin';
 import Cadastro from '../Pages/Cadastro/Cadastro';
+import RecuperarSenha from '../Pages/RecuperarSenha/RecuperarSenha';
+
 
 const Private = ({Item}) =>{
   const {signed} = useAuth();
@@ -20,6 +22,7 @@ const RoutesApp = () => {
           <Route exact path="/home" element={<Private Item={Home} />} />
           <Route path="/login" element={<TelaLogin />} />
           <Route exact path="/cadastro" element={<Cadastro />} />
+          <Route path="/recuperar-senha" element={<RecuperarSenha />} />
         </Routes> 
       </Fragment>
     </BrowserRouter>
