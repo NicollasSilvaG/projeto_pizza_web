@@ -12,7 +12,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
-import "./StylePedidos.css";
+import "./StyleCategorias.css";
 
 const Pedidos = () => {
     const { signout } = useAuth();
@@ -115,20 +115,20 @@ const Pedidos = () => {
 
   return (
     <div>
-      <AppBar className="appbar-pedidos" position="static">
+      <AppBar className="appbar-categorias" position="static">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
             <MenuIcon />
           </IconButton>
-          <h1 className="title-pedidos">Pedidos</h1>
+          <h1 className="title-categorias">Gerenciar Categorias</h1>
         </Toolbar>
       </AppBar>
       <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
         {drawerList()}
       </Drawer>
-      {/* Conteúdo principal da tela de gerenciar pedidos */}
+      {/* Conteúdo principal da tela de gerenciar categorias */}
       <div style={{ padding: '20px' }}>
-        {/* Aqui você pode adicionar a tabela ou lista para gerenciamento de pedidos */}
+        {/* Aqui você pode adicionar a tabela para o gerenciamento de categorias*/}
       </div>
     </div>
   );
