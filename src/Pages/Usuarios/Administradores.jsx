@@ -14,11 +14,13 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./StyleAdministradores.css"
 
+const drawerWidth = 240;
+
 const Pedidos = () => {
     const { signout } = useAuth();
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [openSubMenu, setOpenSubMenu] = useState({ users: false, clients: false, admins: false, products: false, coupons: false });
+  const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
 
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
@@ -42,8 +44,8 @@ const Pedidos = () => {
   
 
   const drawerList = () => (
-    <div role="presentation">
-      <div style={{ backgroundColor: '#da3131', textAlign: 'center', padding: '16px' }}>
+    <div style={{ width: drawerWidth }} role="presentation">
+      <div style={{ backgroundColor: '#c54444', textAlign: 'center', padding: '16px' }}>
         <img 
           src="/public/assets/logotipo01.png" 
           alt="Logo" 
@@ -69,10 +71,10 @@ const Pedidos = () => {
         </ListItem>
         <Collapse in={openSubMenu.users} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button onClick={navigateTo("/clientes")} sx={{ pl: 4 }}>
+            <ListItem button onClick={navigateTo("/clientes")} style={{ paddingLeft: drawerWidth * 0.1 }}>
               <ListItemText primary="Gerenciar Clientes" />
             </ListItem>
-            <ListItem button onClick={navigateTo("/administradores")} sx={{ pl: 4 }}>
+            <ListItem button onClick={navigateTo("/administradores")} style={{ paddingLeft: drawerWidth * 0.1 }}>
               <ListItemText primary="Gerenciar Administradores" />
             </ListItem>
           </List>
@@ -85,10 +87,10 @@ const Pedidos = () => {
         </ListItem>
         <Collapse in={openSubMenu.products} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button onClick={navigateTo("/produtos")} sx={{ pl: 4 }}>
+            <ListItem button onClick={navigateTo("/produtos")} style={{ paddingLeft: drawerWidth * 0.1 }}>
               <ListItemText primary="Gerenciar Produtos" />
             </ListItem>
-            <ListItem button onClick={navigateTo("/categorias")} sx={{ pl: 4 }}>
+            <ListItem button onClick={navigateTo("/categorias")} style={{ paddingLeft: drawerWidth * 0.1 }}>
               <ListItemText primary="Gerenciar Categorias" />
             </ListItem>
           </List>
@@ -123,7 +125,12 @@ const Pedidos = () => {
           <h1 className="title-admin">Gerenciar Administradores</h1>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer 
+        anchor="left" 
+        open={isDrawerOpen} 
+        onClose={toggleDrawer(false)}
+        PaperProps={{ style: { width: drawerWidth } }}
+      >
         {drawerList()}
       </Drawer>
       {/* Conteúdo principal da tela de gerenciar administradores */}

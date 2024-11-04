@@ -1,5 +1,5 @@
 .Cadastro-container {
-  background-color: #F97171 !important;
+  background-color: #c54444 !important;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -18,7 +18,7 @@
 }
 
 .Cadastro-form {
-  background-color: #F97171 !important;
+  background-color: #c54444 !important;
   display: flex; 
   flex-direction: column; 
   background-color: white;

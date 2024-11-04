@@ -43,7 +43,7 @@ const Pedidos = () => {
 
   const drawerList = () => (
     <div role="presentation">
-      <div style={{ backgroundColor: '#da3131', textAlign: 'center', padding: '16px' }}>
+      <div style={{ backgroundColor: '#c54444', textAlign: 'center', padding: '16px' }}>
         <img 
           src="/public/assets/logotipo01.png" 
           alt="Logo" 
