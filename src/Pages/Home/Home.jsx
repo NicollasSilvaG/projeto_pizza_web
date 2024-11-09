@@ -1,6 +1,5 @@
 import React, { useState } from "react"; 
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -12,6 +11,7 @@ import CuponIcon from "@mui/icons-material/LocalOffer";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useAuth } from "../../Hooks/useAuth";
 import "./StyleHome.css";  
 
 const drawerWidth = 240;

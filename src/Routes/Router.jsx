@@ -1,6 +1,6 @@
-import React, { Fragment} from 'react';
+import React, { Fragment, useEffect} from 'react';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
-import useAuth from '../Hooks/useAuth';
+import { useAuth } from '../Hooks/useAuth';
 
 import Home from '../Pages/Home/Home'; 
 import TelaLogin from '../Pages/Login/TelaLogin';
@@ -12,12 +12,19 @@ import Administradores from '../Pages/Usuarios/Administradores';
 import Produtos from '../Pages/Produtos/Produtos';
 import Categorias from '../Pages/Produtos/Categorias';
 import Cupons from '../Pages/Cupons/Cupons';
+import { useNavigate } from 'react-router-dom';
 
+const Private = ({ Item }) => {
+  const { signed } = useAuth();
+  const navigate = useNavigate();
 
-const Private = ({Item}) =>{
-  const {signed} = useAuth();
+  useEffect(() => {
+    if (!signed) {
+      navigate('/login');
+    }
+  }, [signed, navigate]);
 
-  return signed > 0 ? <Item /> : <TelaLogin />;
+  return signed ? <Item /> : null; // Removemos TelaLogin para evitar re-render
 };
 
 const RoutesApp = () => {

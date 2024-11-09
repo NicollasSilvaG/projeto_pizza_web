@@ -1,84 +1,63 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./StyleTelaLogin.css";
-import useAuth from '../../Hooks/useAuth';
-import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import { useAuth } from "../../Hooks/useAuth";
+import './StyleTelaLogin.css';
 
 const TelaLogin = () => {
-  const { TelaLogin } = useAuth(); 
+  const { login } = useAuth(); // A função login vem do contexto
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
-  const handleCadastro = () => {
-    navigate('/cadastro');
-  };
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Limpa qualquer mensagem de erro anterior
+  
     if (!email || !senha) {
       setError("Preencha todos os campos");
-      toast.error("Preencha todos os campos"); 
       return;
     }
     
-    const res = TelaLogin(email, senha);
-
-    if (res) {
-      setError(res);
-      toast.error(res); 
-      return;
+    try {
+      const res = await login({ login: email, senha });
+  
+      if (res) {
+        setError(res); // Se ocorrer erro, exibe a mensagem de erro
+      } else {
+        console.log("Redirecionando para a página inicial");
+        navigate("/home"); // Redireciona para a página inicial
+      }
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      setError("Erro ao fazer login"); // Mensagem de erro caso a requisição falhe
     }
-
-    navigate("/home"); 
-  };
-
-  const handleForgotPassword = () => {
-    navigate("/recuperar-senha"); 
   };
 
   return (
     <div className="login-page">
-      <div className="elemento">
-        <div className="login-container">
-          <h1>Entrar</h1>
-          <form id="loginForm" onSubmit={handleLogin}>
-            <div className="input-group email">
-              <label htmlFor="email">E-mail</label>
-              <input
-                type="email"
-                placeholder="Digite seu E-mail"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError("");
-                }}
-                required
-              />  
-            </div>
-            <div className="input-group senha">
-              <label htmlFor="password">Senha</label>
-              <input
-                type="password"
-                placeholder="Digite sua Senha"
-                value={senha}
-                onChange={(e) => {
-                  setSenha(e.target.value);
-                  setError("");
-                }}
-                required
-              />
-            </div>
-            <p className="forgot-password" onClick={handleForgotPassword}>Esqueceu sua senha?</p>             
-            <button className="btn-login" type="submit">Acessar</button>
-            <button className="btn-cadastro" type="button" onClick={handleCadastro}>Cadastre-se</button> 
-          </form>
-        </div>
+      <div className="login-container">
+        <h1>Login</h1>
+        <form onSubmit={handleLogin}>
+          <input 
+            type="email" 
+            placeholder="E-mail" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            required 
+          />
+          <input 
+            type="password" 
+            placeholder="Senha" 
+            value={senha} 
+            onChange={(e) => setSenha(e.target.value)} 
+            required  
+          />
+          {error && <span className="error-message">{error}</span>} {/* Exibe erro, se houver */}
+          <button type="submit">Entrar</button>
+          <button type="button" onClick={() => navigate("/cadastro")}>Cadastre-se</button>
+        </form>
       </div>
-      <ToastContainer /> {}
     </div>
   );
 };

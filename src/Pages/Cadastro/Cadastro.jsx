@@ -1,31 +1,34 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../Hooks/useAuth";
-import './StyleCadastro.css'; 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../Hooks/useAuth";
+import './StyleCadastro.css';
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailConf, setEmailConf] = useState("");
+  const [login, setLogin] = useState("");
+  const [loginConf, setLoginConf] = useState("");
   const [senha, setSenha] = useState("");
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { Cadastro } = useAuth();
   const navigate = useNavigate();
 
-  const { Cadastro } = useAuth();
+  const handleCadastro = async () => {
+    setErrorMessage(""); // Reseta a mensagem de erro
 
-  const handleCadastro = () => {
-    if (!nome || !email || !emailConf || !senha) {
-      setError("Preencha todos os campos");
-      return;
-    } else if (email !== emailConf) {
-      setError("Os e-mails não são iguais");
+    if (!nome || !login || !loginConf || !senha) {
+      setErrorMessage("Por favor, preencha todos os campos.");
       return;
     }
 
-    const res = Cadastro(email, senha);
+    if (login !== loginConf) {
+      setErrorMessage("Os logins não são iguais.");
+      return;
+    }
+
+    const res = await Cadastro({ nome, login, senha });
 
     if (res) {
-      setError(res);
+      setErrorMessage(res); // Define a mensagem de erro recebida do contexto
       return;
     }
 
@@ -37,38 +40,32 @@ const Cadastro = () => {
     <div className="Cadastro-container">
       <h1>Cadastro de Usuário</h1>
       <div className="Cadastro-form">
-      <input
+        <input
           type="text"
-          placeholder="Digite seu Nome"
+          placeholder="Nome"
           value={nome}
-          onChange={(e) => [setNome(e.target.value), setError("")]}
+          onChange={(e) => setNome(e.target.value)}
         />
         <input
-          type="email"
-          placeholder="Digite seu E-mail"
-          value={email}
-          onChange={(e) => [setEmail(e.target.value), setError("")]}
+          type="text"
+          placeholder="Login"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
         />
         <input
-          type="email"  
-          placeholder="Confirme seu E-mail"
-          value={emailConf}
-          onChange={(e) => [setEmailConf(e.target.value), setError("")]}
+          type="text"
+          placeholder="Confirme o Login"
+          value={loginConf}
+          onChange={(e) => setLoginConf(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Digite sua Senha"
+          placeholder="Senha"
           value={senha}
-          onChange={(e) => [setSenha(e.target.value), setError("")]}
+          onChange={(e) => setSenha(e.target.value)}
         />
-        {error && <span className="error-message">{error}</span>}
-        <button onClick={handleCadastro}>Inscrever-se</button>
-        <label>
-          Já tem uma conta?
-          <p>
-            <Link to="/login">Entre</Link>
-          </p>
-        </label>
+        {errorMessage && <span className="error-message">{errorMessage}</span>}
+        <button onClick={handleCadastro}>Cadastrar</button>
       </div>
     </div>
   );
