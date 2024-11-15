@@ -9,10 +9,10 @@ import RecuperarSenha from '../Pages/RecuperarSenha/RecuperarSenha';
 import Pedidos from '../Pages/Pedidos/Pedidos';
 import Clientes from '../Pages/Usuarios/Clientes';
 import Administradores from '../Pages/Usuarios/Administradores';
-import Produtos from '../Pages/Produtos/Produtos';
 import Categorias from '../Pages/Produtos/Categorias';
 import Cupons from '../Pages/Cupons/Cupons';
 import { useNavigate } from 'react-router-dom';
+import ProdutosList from '../Pages/Produtos/Produtos';
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -39,7 +39,7 @@ const RoutesApp = () => {
           <Route exact path="/pedidos" element={<Pedidos />} />
           <Route exact path="/clientes" element={<Clientes />} />
           <Route exact path="/administradores" element={<Administradores />} />
-          <Route exact path="/produtos" element={<Produtos />} />
+          <Route exact path="/produtos" element={<ProdutosList />} />
           <Route exact path="/categorias" element={<Categorias />} />
           <Route exact path="/cupons" element={<Cupons />} />
         </Routes> 
