@@ -1,34 +1,52 @@
+/* StyleCadastro.css */
+
+/* Alterações para Cadastro com base no estilo do Login */
 .Cadastro-container {
   background-color: #c54444 !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: #f5f5f5;
-  display: flex;
-  height: 599px; 
+  position: relative;
+  font-family: Arial, sans-serif;
+  height: 695.3px;
   margin: -8px;
-  width: 228vh;
+  width: 220vh;
   overflow: hidden;
 }
 
 .Cadastro-container h1 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1.5rem;
+  margin-top: -35px;
+  text-align: left;
+  font-size: 30px;
+  color: #2B1C1C;
+  font-weight: bold;
 }
 
-.Cadastro-form {
-  background-color: #c54444 !important;
-  display: flex; 
-  flex-direction: column; 
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 300px;
+.Cadastro-container .elemento {
+  background-image: url('/public/assets/logotipo01.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 190px;
+  width: 100%;
+  position: absolute;
 }
 
-.Cadastro-form input {
+.Cadastro-container .Cadastro-content {
+  width: 500px;
+  height: auto;
+  margin: auto;
+  margin-top: 183px;
+  padding: 60px;
+  border-radius: 5px;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  position: relative;
+  background-color: #cb4444;
+}
+
+.Cadastro-container .Cadastro-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.Cadastro-container .Cadastro-form input {
   display: block;
   margin-bottom: 1rem;
   padding: 10px;
@@ -37,7 +55,7 @@
   font-size: 1rem;
 }
 
-.Cadastro-form button {
+.Cadastro-container button {
   padding: 10px 80px;
   margin: 35px auto;
   display: block;
@@ -50,36 +68,32 @@
   font-weight: bold;
 }
 
-.Cadastro-form button:hover {
+.Cadastro-container button:hover {
   background-color: #050000;
 }
 
-.Cadastro-form .error-message {
-  color: red;
-  font-size: 0.875rem;
-  margin-bottom: 1rem;
-}
-
-.Cadastro-form label {
-  display: flex;
-  margin-top: 2px;
-  font-size: 0.875rem;
-  color: #000000;
+/* Botão Voltar ao Login */
+.Cadastro-container .back-to-login {
+  padding: 10px 80px;
+  margin-top: -10px; /* Ajustado para o mesmo espaçamento do botão na tela de Login */
+  display: block;
+  color: #fff;
+  background-color: #2B1C1C;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
   font-weight: bold;
 }
 
-.Cadastro-form label p {
-  text-decoration: underline;
-  margin: 0px 4px;
-  font-size: 0.875rem;
-  color: #000000;
+.Cadastro-container .back-to-login:hover {
+  background-color: #050000;
 }
 
-.Cadastro-form label p a {
-  text-decoration: none;
-  color: inherit;
-}
 
-.Cadastro-form label p a:hover {
-  text-decoration: underline;
+.error-message {
+  color: rgb(255, 230, 0);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: block;
 }

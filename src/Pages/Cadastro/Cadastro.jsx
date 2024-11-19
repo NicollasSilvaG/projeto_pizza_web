@@ -36,36 +36,44 @@ const Cadastro = () => {
     navigate("/login");
   };
 
+  const handleVoltar = () => {
+    navigate("/login"); // Redireciona para a página de login
+  };
+
   return (
     <div className="Cadastro-container">
-      <h1>Cadastro de Usuário</h1>
-      <div className="Cadastro-form">
-        <input
-          type="text"
-          placeholder="Nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Login"
-          value={login}
-          onChange={(e) => setLogin(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Confirme o Login"
-          value={loginConf}
-          onChange={(e) => setLoginConf(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-        />
-        {errorMessage && <span className="error-message">{errorMessage}</span>}
-        <button onClick={handleCadastro}>Cadastrar</button>
+      <div className="elemento"></div>
+      <div className="Cadastro-content">
+        <h1>Cadastro de Administradores</h1>
+        <div className="Cadastro-form">
+          <input
+            type="text"
+            placeholder="Nome"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="E-mail"
+            value={login}
+            onChange={(e) => setLogin(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Confirme o E-mail"
+            value={loginConf}
+            onChange={(e) => setLoginConf(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+          />
+          {errorMessage && <span className="error-message">{errorMessage}</span>}
+          <button onClick={handleCadastro}>Cadastrar</button>
+          <button className="back-to-login" onClick={handleVoltar}>Voltar ao Login</button>
+        </div>
       </div>
     </div>
   );

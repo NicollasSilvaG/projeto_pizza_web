@@ -4,7 +4,7 @@ import { useAuth } from "../../Hooks/useAuth";
 import './StyleTelaLogin.css';
 
 const TelaLogin = () => {
-  const { login } = useAuth(); // A função login vem do contexto
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -12,50 +12,60 @@ const TelaLogin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Limpa qualquer mensagem de erro anterior
-  
+    setError("");
+
     if (!email || !senha) {
       setError("Preencha todos os campos");
       return;
     }
-    
+
     try {
       const res = await login({ login: email, senha });
-  
+
       if (res) {
-        setError(res); // Se ocorrer erro, exibe a mensagem de erro
+        setError(res);
       } else {
-        console.log("Redirecionando para a página inicial");
-        navigate("/home"); // Redireciona para a página inicial
+        navigate("/home");
       }
     } catch (error) {
       console.error("Erro ao fazer login:", error);
-      setError("Erro ao fazer login"); // Mensagem de erro caso a requisição falhe
+      setError("Erro ao fazer login. Verifique sua conexão.");
     }
+  };
+
+  const handleCadastro = () => {
+    navigate("/cadastro");
   };
 
   return (
     <div className="login-page">
+      <div className="elemento"></div> {/* Logo configurada via CSS */}
       <div className="login-container">
         <h1>Login</h1>
         <form onSubmit={handleLogin}>
-          <input 
-            type="email" 
-            placeholder="E-mail" 
-            value={email} 
-            onChange={(e) => setEmail(e.target.value)} 
-            required 
-          />
-          <input 
-            type="password" 
-            placeholder="Senha" 
-            value={senha} 
-            onChange={(e) => setSenha(e.target.value)} 
-            required  
-          />
-          {error && <span className="error-message">{error}</span>} {/* Exibe erro, se houver */}
-          <button type="submit">Entrar</button>
-          <button type="button" onClick={() => navigate("/cadastro")}>Cadastre-se</button>
+          <div className="input-group email">
+            <label htmlFor="email">E-mail</label>
+            <input
+              type="email"
+              placeholder="Digite seu E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group senha">
+            <label htmlFor="password">Senha</label>
+            <input
+              type="password"
+              placeholder="Digite sua Senha"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+          </div>
+          {error && <span className="error-message">{error}</span>}
+          <button className="btn-login" type="submit">Acessar</button>
+          <button className="btn-cadastro" type="button" onClick={handleCadastro}>Cadastre-se</button>
         </form>
       </div>
     </div>
