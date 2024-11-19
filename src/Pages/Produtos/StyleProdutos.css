@@ -2,10 +2,30 @@
 .produtos-container {
   padding: 20px;
   font-family: Arial, sans-serif;
+  position: relative; /* Para posicionar o botão relativo ao container */
+}
+
+/* Botão Criar Produto */
+.btn-criar-produto {
+  position: absolute; /* Posiciona o botão no topo direito */
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #d82837;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-criar-produto:hover {
+  background-color: #660d0d;
 }
 
 h1 {
   text-align: center;
+  margin-top: -10px; /* Para dar espaço para o botão */
   margin-bottom: 20px;
   color: #333;
 }
@@ -30,9 +50,13 @@ h1 {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 15px;
+  padding: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  max-width: 220px;
+  margin: auto;
 }
 
 .produto-card:hover {
@@ -41,16 +65,31 @@ h1 {
 }
 
 .produto-card h3 {
-  margin: 0 0 10px 0;
+  margin: 0 0 8px 0;
   color: #333;
+  font-size: 16px;
 }
 
-.produto-card p {
-  margin: 5px 0;
-  font-size: 14px;
+/* Área da imagem do produto */
+.produto-imagem {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Informações do produto */
+.produto-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.produto-info p {
+  margin: 4px 0;
+  font-size: 13px;
   color: #555;
 }
 
-.produto-card strong {
+.produto-info strong {
   color: #000;
 }

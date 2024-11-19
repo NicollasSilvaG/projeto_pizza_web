@@ -13,6 +13,7 @@ import Categorias from '../Pages/Produtos/Categorias';
 import Cupons from '../Pages/Cupons/Cupons';
 import { useNavigate } from 'react-router-dom';
 import ProdutosList from '../Pages/Produtos/Produtos';
+import CriarProduto from '../Pages/Produtos/CriarProduto';
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -40,6 +41,7 @@ const RoutesApp = () => {
           <Route exact path="/clientes" element={<Clientes />} />
           <Route exact path="/administradores" element={<Administradores />} />
           <Route exact path="/produtos" element={<ProdutosList />} />
+          <Route exact path="/criarproduto" element={<CriarProduto />} />
           <Route exact path="/categorias" element={<Categorias />} />
           <Route exact path="/cupons" element={<Cupons />} />
         </Routes> 
