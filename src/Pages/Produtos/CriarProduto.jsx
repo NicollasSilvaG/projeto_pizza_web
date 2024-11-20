@@ -18,16 +18,21 @@ const CriarProduto = () => {
     useEffect(() => {
         const fetchCategorias = async () => {
             try {
-                // Exemplo: busque categorias do backend ou defina manualmente
                 const response = await ProdutoService.getCategorias(); // API que retorna categorias
-                setCategorias(response.data); // Exemplo de resposta: [{ id: 1, tipo: "Pizza" }, { id: 2, tipo: "Bebida" }]
+                if (Array.isArray(response) && response.length > 0) {
+                    setCategorias(response); // Armazena categorias no estado
+                } else {
+                    setError('Nenhuma categoria encontrada.');
+                }
             } catch (error) {
-                console.error("Erro ao carregar categorias:", error);
+                setError('Erro ao carregar categorias.');
+                console.error('Erro ao carregar categorias:', error);
             }
         };
-
+    
         fetchCategorias();
     }, []);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -104,15 +109,20 @@ const CriarProduto = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="tamanho">Tamanho:</label>
-                    <input
-                        type="text"
-                        id="tamanho"
-                        value={tamanho}
-                        onChange={(e) => setTamanho(e.target.value)}
-                        required
-                    />
-                </div>
+    <label htmlFor="tamanho">Tamanho:</label>
+    <select
+        id="tamanho"
+        value={tamanho}
+        onChange={(e) => setTamanho(e.target.value)}
+        required
+    >
+        <option value="">Selecione um tamanho</option>
+        <option value="Pequeno">Pequeno</option>
+        <option value="Médio">Médio</option>
+        <option value="Grande">Grande</option>
+    </select>
+</div>
+
 
                 <div className="form-group">
                     <label htmlFor="imagem">Imagem:</label>
@@ -133,11 +143,15 @@ const CriarProduto = () => {
                         required
                     >
                         <option value="">Selecione uma categoria</option>
-                        {categorias.map((cat) => (
-                            <option key={cat.id} value={cat.tipo}>
-                                {cat.tipo}
-                            </option>
-                        ))}
+                        {categorias.length === 0 ? (
+                            <option disabled>Carregando categorias...</option>
+                        ) : (
+                            categorias.map((cat) => (
+                                <option key={cat.id} value={cat.tipo}>
+                                    {cat.tipo}
+                                </option>
+                            ))
+                        )}
                     </select>
                 </div>
 
