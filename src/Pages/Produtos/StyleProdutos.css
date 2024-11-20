@@ -1,3 +1,23 @@
+.appbar-produtos {
+  background-color: #c54444 !important;  
+}
+.title-produtos {
+  text-align: left !important;  /* Alinha o texto à esquerda */
+  padding-left: 20px;  /* Adiciona um espaçamento à esquerda para garantir que o título não fique muito próximo da borda */
+  margin-top: 0;  /* Remove qualquer margem superior, para que o título não suba para fora da AppBar */
+  margin: 0; /* Remova margens desnecessárias */
+  color: white;  /* Se desejar que o texto seja branco (ou outra cor), adicione isso */
+}
+
+.container {
+  padding: 20px;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+
 /* Container principal */
 .produtos-container {
   padding: 20px;
@@ -8,7 +28,7 @@
 /* Botão Criar Produto */
 .btn-criar-produto {
   position: absolute; /* Posiciona o botão no topo direito */
-  top: 20px;
+  top: 30px; /* Aumentar a distância do topo, se necessário */
   right: 20px;
   padding: 10px 20px;
   background-color: #d82837;

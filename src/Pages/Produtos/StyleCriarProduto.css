@@ -1,20 +1,58 @@
-.form-container {
-    padding: 40px;
-    max-width: 500px;
-    margin: auto;
+/* Contêiner principal da página */
+.page-container {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Barra superior (App Bar) */
+.app-bar {
+    display: flex;
+    align-items: center;
+    background-color: #c54444; /* Cor da App Bar */
+    color: white;
+    padding: 15px 20px;
+    margin-bottom: 10px; /* Espaço abaixo da App Bar */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0px; /* Remover bordas arredondadas */
+    justify-content: space-between; /* Alinha os itens à esquerda e direita */
+}
+
+/* Título */
+.app-bar h1 {
+    color: white; /* Título em branco */
+    margin: 0;
+    font-size: 20px;
+}
+
+/* Botão Voltar (X) */
+.btn-voltar {
+    background: transparent;
+    color: black;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+/* Botão Voltar (X) - Efeito Hover */
+.btn-voltar:hover {
+    color: #c54444;
+}
+
+/* Contêiner do formulário */
+.form-container {
+    background-color: white;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
+/* Estilo dos campos */
 .form-group {
-    margin-top: 10px;
     margin-bottom: 15px;
 }
 
@@ -22,45 +60,81 @@ h1 {
     font-size: 14px;
     margin-bottom: 5px;
     display: block;
+    color: #333;
 }
 
-.form-group input,
-.form-group textarea {
+input,
+textarea,
+select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     font-size: 14px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
 }
 
-.form-group textarea {
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #888;
+    outline: none;
+}
+
+textarea {
     resize: vertical;
-    height: 100px;
 }
 
+/* Estilo do botão de submit */
 .btn-submit {
-    background-color: #d82837;
+    background-color: #2B1C1C; /* Cor do botão */
     color: white;
-    padding: 12px 20px;
+    padding: 14px 20px;
+    font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
     width: 100%;
+    transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: #660d0d;
+    background-color: #3d2525;
 }
 
+.btn-submit:active {
+    background-color: #1c1414;
+}
+
+/* Mensagens de sucesso ou erro */
 .success {
     color: green;
+    font-size: 14px;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .error {
     color: red;
+    font-size: 14px;
     text-align: center;
     margin-bottom: 20px;
+}
+
+/* Reseta o margin e padding para remover o espaço extra na tela */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f4f4f4; /* Cor de fundo global, igual à cor do contêiner */
+}
+
+/* Garantir que o contêiner da página ocupe toda a área disponível */
+.page-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Remove o padding adicional do contêiner */
 }

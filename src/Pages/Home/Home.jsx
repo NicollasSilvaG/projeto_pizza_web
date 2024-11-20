@@ -1,48 +1,48 @@
 import React, { useState } from "react"; 
-import { useNavigate } from "react-router-dom";
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import LogoutIcon from "@mui/icons-material/Logout";
-import HomeIcon from "@mui/icons-material/Home";
-import OrderIcon from "@mui/icons-material/Receipt";
-import UserIcon from "@mui/icons-material/People";
-import ProductIcon from "@mui/icons-material/Inventory";
-import CuponIcon from "@mui/icons-material/LocalOffer";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { useAuth } from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom"; 
+import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material"; 
+import MenuIcon from "@mui/icons-material/Menu"; 
+import LogoutIcon from "@mui/icons-material/Logout"; 
+import HomeIcon from "@mui/icons-material/Home"; 
+import OrderIcon from "@mui/icons-material/Receipt"; 
+import UserIcon from "@mui/icons-material/People"; 
+import ProductIcon from "@mui/icons-material/Inventory"; 
+import CuponIcon from "@mui/icons-material/LocalOffer"; 
+import ExpandLess from "@mui/icons-material/ExpandLess"; 
+import ExpandMore from "@mui/icons-material/ExpandMore"; 
+import AccountCircle from "@mui/icons-material/AccountCircle"; 
+import { useAuth } from "../../Hooks/useAuth"; 
 import "./StyleHome.css";  
 
 const drawerWidth = 240;
 
-const Home = () => {
-  const { signout } = useAuth();
-  const navigate = useNavigate();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+const Home = () => { 
+  const { signout } = useAuth(); 
+  const navigate = useNavigate(); 
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false); 
   const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
 
-  const toggleDrawer = (open) => () => {
-    setIsDrawerOpen(open);
+  const toggleDrawer = (open) => () => { 
+    setIsDrawerOpen(open); 
   };
 
-  const handleLogout = () => {
-    signout();
-    navigate("/login");
-    toggleDrawer(false)();
+  const handleLogout = () => { 
+    signout(); 
+    navigate("/login"); 
+    toggleDrawer(false)(); 
   };
 
-  const handleSubMenuToggle = (menu) => {
-    setOpenSubMenu((prevState) => ({ ...prevState, [menu]: !prevState[menu] }));
+  const handleSubMenuToggle = (menu) => { 
+    setOpenSubMenu((prevState) => ({ ...prevState, [menu]: !prevState[menu] })); 
   };
 
-  const navigateTo = (path) => () => {
-    navigate(path);
-    toggleDrawer(false)();
+  const navigateTo = (path) => () => { 
+    navigate(path); 
+    toggleDrawer(false)(); 
   };
 
-  const drawerList = () => (
-    <div style={{ width: drawerWidth }} role="presentation">
+  const drawerList = () => ( 
+    <div style={{ width: drawerWidth }} role="presentation"> 
       <div style={{ backgroundColor: '#c54444', textAlign: 'center', padding: '16px' }}>
         <img 
           src="/public/assets/logotipo01.png" 
@@ -50,8 +50,7 @@ const Home = () => {
           style={{ width: '125px', height: 'auto' }} 
         />
       </div>
-
-      <List>
+      <List> 
         <ListItem button onClick={navigateTo("/home")}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText primary="Home" />
@@ -109,31 +108,32 @@ const Home = () => {
           <ListItemIcon><LogoutIcon /></ListItemIcon>
           <ListItemText primary="Sair" />
         </ListItem>
-      </List>
-    </div>
+      </List> 
+    </div> 
   );
 
-  return (
+  return ( 
     <div>
-      <AppBar className="appbar-home" position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-            <MenuIcon />
-          </IconButton>
-          <h1 className="title-home">Home</h1>
-        </Toolbar>
+      <AppBar className="appbar-home" position="static"> 
+        <Toolbar> 
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}> 
+            <MenuIcon /> 
+          </IconButton> 
+          <h1 className="title-home">Home</h1> 
+        </Toolbar> 
       </AppBar>
-      <Drawer 
-        anchor="left" 
-        open={isDrawerOpen} 
-        onClose={toggleDrawer(false)}
-        PaperProps={{ style: { width: drawerWidth } }}
-      >
-        {drawerList()}
+
+      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)} PaperProps={{ style: { width: drawerWidth } }}> 
+        {drawerList()} 
       </Drawer>
-      {/* O conteúdo principal da página vai aqui */}
+      
+      {/* Conteúdo principal */}
+      <div className="main-content">
+        <img src="/public/assets/pizza-home.png" alt="Pizza" className="main-image" />
+        <p className="slogan">Pizza quentinha, felicidade em cada fatia!</p>
+      </div>
     </div>
-  );
+  ); 
 };
 
 export default Home;

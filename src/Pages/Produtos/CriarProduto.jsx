@@ -32,7 +32,6 @@ const CriarProduto = () => {
     
         fetchCategorias();
     }, []);
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,108 +56,114 @@ const CriarProduto = () => {
     };
 
     return (
-        <div className="form-container">
-            <h1>Criar Produto</h1>
+        <div className="page-container">
+            {/* Barra de navegação (App Bar) */}
+            <div className="app-bar">
+                <h1>Criar Produto</h1>
+                <button className="btn-voltar" onClick={() => window.history.back()}>X</button>
+            </div>
 
-            {success && <p className="success">{success}</p>}
-            {error && <p className="error">{error}</p>}
+            {/* Contêiner do formulário */}
+            <div className="form-container">
+                {success && <p className="success">{success}</p>}
+                {error && <p className="error">{error}</p>}
 
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="nome">Nome:</label>
-                    <input
-                        type="text"
-                        id="nome"
-                        value={nome}
-                        onChange={(e) => setNome(e.target.value)}
-                        required
-                    />
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="nome">Nome:</label>
+                        <input
+                            type="text"
+                            id="nome"
+                            value={nome}
+                            onChange={(e) => setNome(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="quantidade">Quantidade:</label>
-                    <input
-                        type="number"
-                        id="quantidade"
-                        value={quantidade}
-                        onChange={(e) => setQuantidade(e.target.value)}
-                        required
-                    />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="quantidade">Quantidade:</label>
+                        <input
+                            type="number"
+                            id="quantidade"
+                            value={quantidade}
+                            onChange={(e) => setQuantidade(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="preco">Preço:</label>
-                    <input
-                        type="number"
-                        id="preco"
-                        step="0.01"
-                        value={preco}
-                        onChange={(e) => setPreco(e.target.value)}
-                        required
-                    />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="preco">Preço:</label>
+                        <input
+                            type="number"
+                            id="preco"
+                            step="0.01"
+                            value={preco}
+                            onChange={(e) => setPreco(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="descricao">Descrição:</label>
-                    <textarea
-                        id="descricao"
-                        value={descricao}
-                        onChange={(e) => setDescricao(e.target.value)}
-                        required
-                    ></textarea>
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="descricao">Descrição:</label>
+                        <textarea
+                            id="descricao"
+                            value={descricao}
+                            onChange={(e) => setDescricao(e.target.value)}
+                            required
+                        ></textarea>
+                    </div>
 
-                <div className="form-group">
-    <label htmlFor="tamanho">Tamanho:</label>
-    <select
-        id="tamanho"
-        value={tamanho}
-        onChange={(e) => setTamanho(e.target.value)}
-        required
-    >
-        <option value="">Selecione um tamanho</option>
-        <option value="Pequeno">Pequeno</option>
-        <option value="Médio">Médio</option>
-        <option value="Grande">Grande</option>
-    </select>
-</div>
+                    <div className="form-group">
+                        <label htmlFor="tamanho">Tamanho:</label>
+                        <select
+                            id="tamanho"
+                            value={tamanho}
+                            onChange={(e) => setTamanho(e.target.value)}
+                            required
+                        >
+                            <option value="">Selecione um tamanho</option>
+                            <option value="Pequeno">Pequeno</option>
+                            <option value="Médio">Médio</option>
+                            <option value="Grande">Grande</option>
+                        </select>
+                    </div>
 
+                    <div className="form-group">
+                        <label htmlFor="imagem">Imagem:</label>
+                        <input
+                            type="file"
+                            id="imagem"
+                            onChange={(e) => setImagem(e.target.files[0])} // Captura o arquivo
+                            required
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="imagem">Imagem:</label>
-                    <input
-                        type="file"
-                        id="imagem"
-                        onChange={(e) => setImagem(e.target.files[0])} // Captura o arquivo
-                        required
-                    />
-                </div>
+                    <div className="form-group">
+                        <label htmlFor="categoria">Categoria:</label>
+                        <select
+                            id="categoria"
+                            value={categoria}
+                            onChange={(e) => setCategoria(e.target.value)}
+                            required
+                        >
+                            <option value="">Selecione uma categoria</option>
+                            {categorias.length === 0 ? (
+                                <option disabled>Carregando categorias...</option>
+                            ) : (
+                                categorias.map((cat) => (
+                                    <option key={cat.id} value={cat.tipo}>
+                                        {cat.tipo}
+                                    </option>
+                                ))
+                            )}
+                        </select>
+                    </div>
 
-                <div className="form-group">
-                    <label htmlFor="categoria">Categoria:</label>
-                    <select
-                        id="categoria"
-                        value={categoria}
-                        onChange={(e) => setCategoria(e.target.value)}
-                        required
-                    >
-                        <option value="">Selecione uma categoria</option>
-                        {categorias.length === 0 ? (
-                            <option disabled>Carregando categorias...</option>
-                        ) : (
-                            categorias.map((cat) => (
-                                <option key={cat.id} value={cat.tipo}>
-                                    {cat.tipo}
-                                </option>
-                            ))
-                        )}
-                    </select>
-                </div>
-
-                <button type="submit" className="btn-submit">
-                    Criar Produto
-                </button>
-            </form>
+                    <button type="submit" className="btn-submit">
+                        Criar Produto
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };
