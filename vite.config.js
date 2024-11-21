@@ -5,6 +5,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173, // Certifique-se de que a porta está correta
-    open: true, // Isso abrirá automaticamente o navegador ao iniciar
+    open:'/login', // Isso abrirá automaticamente o navegador ao iniciar
   },
 });
