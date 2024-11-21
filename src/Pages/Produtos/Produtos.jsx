@@ -46,7 +46,7 @@ const ProdutosList = () => {
             const data = await ProdutoService.getAll();
             const produtosComImagens = data.map(produto => ({
                 ...produto,
-                imagemUrl: produto.imagem ? produto.imagem : 'caminho/para/imagem/default.png',
+                imagemUrl: produto.imagem ? `http://localhost:3070/${produto.imagem}` : null
             }));
             setProdutos(produtosComImagens); 
         } catch (error) {
@@ -54,7 +54,7 @@ const ProdutosList = () => {
             setError("Erro ao carregar produtos.");
         }
     };
-
+    
     useEffect(() => {
         fetchProdutos();
     }, []);
