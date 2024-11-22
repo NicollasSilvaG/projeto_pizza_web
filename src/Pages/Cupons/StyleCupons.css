@@ -1,16 +1,120 @@
-.appbar-cupons {
-    background-color: #c54444 !important;  
-  }
-.title-cupons{
-    text-align:center  !important;
-    
+/* Estilo para o container principal */
+.cupons-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
-  
-  .container {
-    padding: 20px;
+
+/* Título */
+.cupons-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Estilo para o formulário */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.formulario input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.formulario button {
+  padding: 10px;
+  background-color: #c54444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.formulario button:hover {
+  background-color: #c54444;
+}
+
+/* Tabela de cupons */
+.cupons-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.cupons-table th,
+.cupons-table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.cupons-table th {
+  background-color: #c54444;
+  color: white;
+}
+
+.cupons-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.cupons-table tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilo para os botões de ações */
+.cupons-table button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.cupons-table button:first-child {
+  background-color: #2196f3;
+  color: white;
+  margin-right: 5px;
+}
+
+.cupons-table button:first-child:hover {
+  background-color: #1e88e5;
+}
+
+.cupons-table button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+.cupons-table button:last-child:hover {
+  background-color: #e53935;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .cupons-container {
+      padding: 10px;
   }
-  
-  .flex-grow {
-    flex-grow: 1;
+
+  .formulario {
+      flex-direction: column;
   }
-  
+
+  .cupons-table th,
+  .cupons-table td {
+      font-size: 14px;
+      padding: 8px;
+  }
+}
