@@ -1,11 +1,12 @@
 .appbar-produtos {
   background-color: #c54444 !important;  
 }
+
 .title-produtos {
   text-align: left !important;  /* Alinha o texto à esquerda */
   padding-left: 20px;  /* Adiciona um espaçamento à esquerda para garantir que o título não fique muito próximo da borda */
   margin-top: 0;  /* Remove qualquer margem superior, para que o título não suba para fora da AppBar */
-  margin: 0; /* Remova margens desnecessárias */
+  margin: 0; /* Remove margens desnecessárias */
   color: white;  /* Se desejar que o texto seja branco (ou outra cor), adicione isso */
 }
 
@@ -17,18 +18,18 @@
   flex-grow: 1;
 }
 
-
 /* Container principal */
 .produtos-container {
   padding: 20px;
   font-family: Arial, sans-serif;
   position: relative; /* Para posicionar o botão relativo ao container */
+  margin-top: 60px; /* Adiciona margem superior para afastar o conteúdo do topo */
 }
 
 /* Botão Criar Produto */
 .btn-criar-produto {
   position: absolute; /* Posiciona o botão no topo direito */
-  top: 30px; /* Aumentar a distância do topo, se necessário */
+  top: -20px; /* Ajusta a distância do topo, se necessário */
   right: 20px;
   padding: 10px 20px;
   background-color: #d82837;
@@ -62,7 +63,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 40px; /* Aumenta a margem superior entre os cards e o botão */
 }
 
 /* Card de produto */

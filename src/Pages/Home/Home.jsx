@@ -129,7 +129,7 @@ const Home = () => {
       
       {/* Conteúdo principal */}
       <div className="main-content">
-        <img src="/public/assets/pizza-home.png" alt="Pizza" className="main-image" />
+        <img src="/assets/pizza-home.png" alt="Pizza" className="main-image" />
         <p className="slogan">Pizza quentinha, felicidade em cada fatia!</p>
       </div>
     </div>

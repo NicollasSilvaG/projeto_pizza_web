@@ -17,7 +17,7 @@
 }
 
 .login-page .elemento {
-    background-image: url('/public/assets/logotipo01.png');
+    background-image: url('/assets/logotipo01.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -60,7 +60,7 @@
 
 .login-page .input-group.email:before {
     content: '';
-    background-image: url('/public/assets/email.png');
+    background-image: url('/assets/email.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 32px;
@@ -73,7 +73,7 @@
 
 .login-page .input-group.senha:before {
     content: '';
-    background-image: url('/public/assets/password.png');
+    background-image: url('/assets/password.png');
     background-size: contain;
     background-repeat: no-repeat;
     width: 32px;

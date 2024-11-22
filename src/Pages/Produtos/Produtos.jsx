@@ -155,7 +155,9 @@ const ProdutosList = () => {
             </Drawer>
 
             <div className="produtos-container">
-                <button className="btn-criar-produto" onClick={handleCriarProduto}>Criar Produto</button>
+                <button className="btn-criar-produto" onClick={handleCriarProduto}>
+                    <span className="btn-icon">+</span> Criar Produto
+                </button>
 
                 {error && <p className="error">{error}</p>}
 
