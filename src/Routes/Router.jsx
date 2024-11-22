@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import ProdutosList from '../Pages/Produtos/Produtos';
 import CriarProduto from '../Pages/Produtos/CriarProduto';
 import Categorias from '../Pages/Categorias/Categorias';
+import ClientePage from '../Pages/Usuarios/Clientes';
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -38,7 +39,7 @@ const RoutesApp = () => {
           <Route exact path="/cadastro" element={<Cadastro />} />
           <Route path="/recuperar-senha" element={<RecuperarSenha />} />
           <Route exact path="/pedidos" element={<Pedidos />} />
-          <Route exact path="/clientes" element={<Clientes />} />
+          <Route exact path="/clientes" element={<ClientePage />} />
           <Route exact path="/administradores" element={<Administradores />} />
           <Route exact path="/produtos" element={<ProdutosList />} />
           <Route exact path="/criarproduto" element={<CriarProduto />} />

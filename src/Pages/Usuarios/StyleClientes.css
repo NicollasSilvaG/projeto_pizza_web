@@ -1,16 +1,116 @@
-.appbar-clientes {
-    background-color: #c54444 !important;  
-  }
-.title-clientes{
-    text-align:center  !important;
-    
+/* Estilo geral */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
 }
-  
-  .container {
-    padding: 20px;
-  }
-  
-  .flex-grow {
-    flex-grow: 1;
-  }
-  
+
+/* Contêiner principal */
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Tabela */
+/* Estilo geral da tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #ffffffad;
+}
+
+/* Estilo para o cabeçalho da tabela */
+thead th {
+  text-align: left;
+  padding: 10px;
+  background: #720703; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  font-weight: bold;
+  border: 1px solid #ddd; /* Borda */
+}
+
+/* Estilo específico para cada coluna */
+.Nome {
+  text-align: left;
+  width: 20%; /* Ajuste o tamanho da coluna conforme necessário */
+}
+
+.Email {
+  text-align: left;
+  width: 25%;
+}
+
+.Telefone {
+  text-align: left;
+  width: 15%;
+}
+
+.Endereco {
+  text-align: left;
+  width: 30%;
+}
+
+.Acoes {
+  text-align: center;
+  width: 10%;
+}
+
+/* Estilo para o corpo da tabela */
+tbody td {
+  padding: 8px;
+  border: 1px solid #0000003d;
+}
+
+/* Cor de fundo alternada para as linhas */
+tbody tr:nth-child(even) {
+  background-color: #c21616;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f198;
+}
+
+
+/* Botões */
+button {
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+
+/* Input de edição */
+input {
+  padding: 6px;
+  margin-bottom: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  width: calc(100% - 14px);
+}
+
+/* Mensagem de erro */
+.error {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 10px;
+}
