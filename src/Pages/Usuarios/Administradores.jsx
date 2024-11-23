@@ -1,143 +1,130 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
-import OrderIcon from "@mui/icons-material/Receipt";
-import UserIcon from "@mui/icons-material/People";
-import ProductIcon from "@mui/icons-material/Inventory";
-import CuponIcon from "@mui/icons-material/LocalOffer";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import LogoutIcon from "@mui/icons-material/Logout";
-import "./StyleAdministradores.css"
+import React, { useEffect, useState } from "react";
+import { AdminController } from "../../context/AdminController";
+import './StyleAdministrador.css';
 
-const drawerWidth = 240;
+const Administradores = () => {
+  const [usuariosList, setUsuariosList] = useState([]); // Estado para armazenar a lista de usuários
+  const [usuarioEmEdicao, setUsuarioEmEdicao] = useState(null); // Estado para armazenar o usuário a ser editado
+  const [carregando, setCarregando] = useState(true); // Estado para controle de carregamento
 
-const Pedidos = () => {
-    const { signout } = useAuth();
-  const navigate = useNavigate();
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
+  // Função para buscar os usuários ao carregar a página
+  useEffect(() => {
+    const fetchUsuarios = async () => {
+      try {
+        const usuarios = await AdminController.buscarUsuariosAdmin();
+        setUsuariosList(usuarios);
+        setCarregando(false);
+      } catch (error) {
+        console.error("Erro ao buscar usuários:", error);
+        setCarregando(false);
+      }
+    };
 
-  const toggleDrawer = (open) => () => {
-    setIsDrawerOpen(open);
+    fetchUsuarios();
+  }, []);
+
+  // Função para editar um usuário
+  const handleEditar = (idAutenticacao) => {
+    const usuario = usuariosList.find((user) => user.idAutenticacao === idAutenticacao);
+    setUsuarioEmEdicao(usuario);
   };
 
-  const handleLogout = () => {
-    signout();
-    navigate("/login");
-    toggleDrawer(false)();
+  // Função para atualizar o usuário
+  const handleAtualizar = async () => {
+    try {
+      if (usuarioEmEdicao) {
+        const response = await AdminController.atualizarAdmin(usuarioEmEdicao.idAutenticacao, usuarioEmEdicao);
+        if (response) {
+          // Atualiza a lista de usuários após a atualização
+          const updatedUsuariosList = usuariosList.map((user) =>
+            user.idAutenticacao === usuarioEmEdicao.idAutenticacao ? usuarioEmEdicao : user
+          );
+          setUsuariosList(updatedUsuariosList);
+          setUsuarioEmEdicao(null);
+        }
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar usuário:", error);
+    }
   };
 
-  const handleSubMenuToggle = (menu) => {
-    setOpenSubMenu((prevState) => ({ ...prevState, [menu]: !prevState[menu] }));
+  // Função para deletar um usuário
+  const handleDeletar = async (idAutenticacao) => {
+    try {
+      const response = await AdminController.deletarAdmin(idAutenticacao);
+      if (response) {
+        // Remove o usuário da lista após a exclusão
+        const updatedUsuariosList = usuariosList.filter((user) => user.idAutenticacao !== idAutenticacao);
+        setUsuariosList(updatedUsuariosList);
+      }
+    } catch (error) {
+      console.error("Erro ao deletar usuário:", error);
+    }
   };
-
-  const navigateTo = (path) => () => {
-    navigate(path);
-    toggleDrawer(false)();
-  };
-
-  
-
-  const drawerList = () => (
-    <div style={{ width: drawerWidth }} role="presentation">
-      <div style={{ backgroundColor: '#c54444', textAlign: 'center', padding: '16px' }}>
-        <img 
-          src="/public/assets/logotipo01.png" 
-          alt="Logo" 
-          style={{ width: '125px', height: 'auto' }} 
-        />
-      </div>
-      
-      <List>
-        <ListItem button onClick={navigateTo("/home")}>
-          <ListItemIcon><HomeIcon /></ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-
-        <ListItem button onClick={navigateTo("/pedidos")}>
-          <ListItemIcon><OrderIcon /></ListItemIcon>
-          <ListItemText primary="Pedidos" />
-        </ListItem>
-
-        <ListItem button onClick={() => handleSubMenuToggle("users")}>
-          <ListItemIcon><UserIcon /></ListItemIcon>
-          <ListItemText primary="Usuários" />
-          {openSubMenu.users ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={openSubMenu.users} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button onClick={navigateTo("/clientes")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-              <ListItemText primary="Gerenciar Clientes" />
-            </ListItem>
-            <ListItem button onClick={navigateTo("/administradores")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-              <ListItemText primary="Gerenciar Administradores" />
-            </ListItem>
-          </List>
-        </Collapse>
-
-        <ListItem button onClick={() => handleSubMenuToggle("products")}>
-          <ListItemIcon><ProductIcon /></ListItemIcon>
-          <ListItemText primary="Produtos" />
-          {openSubMenu.products ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={openSubMenu.products} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button onClick={navigateTo("/produtos")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-              <ListItemText primary="Gerenciar Produtos" />
-            </ListItem>
-            <ListItem button onClick={navigateTo("/categorias")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-              <ListItemText primary="Gerenciar Categorias" />
-            </ListItem>
-          </List>
-        </Collapse>
-
-        <ListItem button onClick={navigateTo("/cupons")}>
-          <ListItemIcon><CuponIcon /></ListItemIcon>
-          <ListItemText primary="Cupons" />
-        </ListItem>
-
-        <Divider sx={{ marginY: 2 }} />
-
-        <ListItem button onClick={navigateTo("/minha-conta")}>
-          <ListItemIcon><AccountCircle /></ListItemIcon>
-          <ListItemText primary="Minha Conta" />
-        </ListItem>
-        <ListItem button onClick={handleLogout}>
-          <ListItemIcon><LogoutIcon /></ListItemIcon>
-          <ListItemText primary="Sair" />
-        </ListItem>
-      </List>
-    </div>
-  );
 
   return (
     <div>
-      <AppBar className="appbar-admin" position="static">
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-            <MenuIcon />
-          </IconButton>
-          <h1 className="title-admin">Gerenciar Administradores</h1>
-        </Toolbar>
-      </AppBar>
-      <Drawer 
-        anchor="left" 
-        open={isDrawerOpen} 
-        onClose={toggleDrawer(false)}
-        PaperProps={{ style: { width: drawerWidth } }}
-      >
-        {drawerList()}
-      </Drawer>
-      {/* Conteúdo principal da tela de gerenciar administradores */}
-      <div style={{ padding: '20px' }}>
-        {/* Aqui você pode adicionar a tabela para o gerenciamento de administradores*/}
-      </div>
+      <h1>Administradores</h1>
+
+      {/* Tabela de Usuários */}
+      {carregando ? (
+        <p>Carregando...</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Login</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usuariosList.map((usuario) => (
+              <tr key={usuario.idAutenticacao}>
+                <td>{usuario.nome}</td>
+                <td>{usuario.login}</td>
+                <td>
+                  <button onClick={() => handleEditar(usuario.idAutenticacao)}>Editar</button>
+                  <button onClick={() => handleDeletar(usuario.idAutenticacao)}>Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {/* Modal ou Formulário de Edição */}
+      {usuarioEmEdicao && (
+        <div>
+          <h2>Editar Usuário</h2>
+          <label>
+            Nome:
+            <input
+              type="text"
+              value={usuarioEmEdicao.nome}
+              onChange={(e) =>
+                setUsuarioEmEdicao({ ...usuarioEmEdicao, nome: e.target.value })
+              }
+            />
+          </label>
+          <br />
+          <label>
+            Login:
+            <input
+              type="text"
+              value={usuarioEmEdicao.login}
+              onChange={(e) =>
+                setUsuarioEmEdicao({ ...usuarioEmEdicao, login: e.target.value })
+              }
+            />
+          </label>
+          <br />
+          <button onClick={handleAtualizar}>Salvar Alterações</button>
+          <button onClick={() => setUsuarioEmEdicao(null)}>Cancelar</button>
+        </div>
+      )}
     </div>
   );
 };
 
-export default Pedidos;
+export default Administradores;

@@ -1,0 +1,75 @@
+/* Estilo para a barra de navegação do administrador */
+.appbar-administrador {
+  background-color: #ccc !important; /* Cor de fundo da barra de navegação */
+  padding: 10px; /* Adicionando um pouco de espaçamento ao redor */
+}
+
+/* Estilo para o título da página do administrador */
+.titulo-administrador {
+  text-align: center !important; /* Centraliza o título */
+  font-size: 24px; /* Ajustando o tamanho da fonte */
+  color: white; /* Mudando a cor do título para branco */
+  margin-bottom: 20px; /* Adicionando uma margem inferior */
+}
+
+/* Estilo para o container da página */
+.container-administrador {
+  padding: 20px; /* Espaçamento interno de 20px */
+  max-width: 1200px; /* Definindo um tamanho máximo para o container */
+  margin: 0 auto; /* Centraliza o container na tela */
+}
+
+/* Flex Grow para elementos que devem crescer */
+.flex-grow-administrador {
+  flex-grow: 1; /* Faz o elemento crescer dentro de um container flex */
+}
+
+/* Estilos para a tabela de usuários */
+.table-administrador {
+  width: 100%;
+  border-collapse: collapse; /* Remove espaços entre células da tabela */
+  margin-top: 20px; /* Adiciona uma margem superior à tabela */
+}
+
+.table-administrador th, .table-administrador td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd; /* Define uma borda sutil */
+}
+
+.table-administrador th {
+  background-color: #f2f2f2; /* Cor de fundo das células de título */
+}
+
+.table-administrador tr:nth-child(even) {
+  background-color: #f9f9f9; /* Altere a cor de fundo para linhas pares */
+}
+
+button-administrador {
+  padding: 6px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  background-color: #410f0f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button-administrador:hover {
+  background-color: #ccc; /* Escurece a cor ao passar o mouse */
+}
+
+/* Estilo para o formulário de edição */
+.input-administrador {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+
+button-administrador:disabled {
+  background-color: #ddd; /* Desabilita o botão com uma cor cinza */
+  cursor: not-allowed;
+}
