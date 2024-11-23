@@ -39,7 +39,7 @@ const TelaLogin = () => {
 
   return (
     <div className="login-page">
-      <div className="elemento"></div> {/* Logo configurada via CSS */}
+      <div className="elemento"></div> 
       <div className="login-container">
         <h1>Login</h1>
         <form onSubmit={handleLogin}>

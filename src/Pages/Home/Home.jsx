@@ -26,10 +26,9 @@ const Home = () => {
     setIsDrawerOpen(open); 
   };
 
-  const handleLogout = () => { 
-    signout(); 
-    navigate("/login"); 
-    toggleDrawer(false)(); 
+  const handleLogout = () => {
+    logout(); // Remove o usuário e limpa o token
+    navigate("/login"); // Redireciona para a página de login
   };
 
   const handleSubMenuToggle = (menu) => { 

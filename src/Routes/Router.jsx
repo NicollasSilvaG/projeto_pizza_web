@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 import ProdutosList from '../Pages/Produtos/Produtos';
 import CriarProduto from '../Pages/Produtos/CriarProduto';
 import Categorias from '../Pages/Categorias/Categorias';
-import ClientePage from '../Pages/Usuarios/Clientes';
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -33,19 +32,22 @@ const RoutesApp = () => {
   return (
     <BrowserRouter>
       <Fragment>
-       <Routes>        
-          <Route exact path="/home" element={<Private Item={Home} />} />
-          <Route path="/login" element={<TelaLogin />} />
-          <Route exact path="/cadastro" element={<Cadastro />} />
+      <Routes>
+         <Route path="/login" element={<TelaLogin />} />
+          <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/recuperar-senha" element={<RecuperarSenha />} />
-          <Route exact path="/pedidos" element={<Pedidos />} />
-          <Route exact path="/clientes" element={<ClientePage />} />
-          <Route exact path="/administradores" element={<Administradores />} />
-          <Route exact path="/produtos" element={<ProdutosList />} />
-          <Route exact path="/criarproduto" element={<CriarProduto />} />
-          <Route exact path="/categorias" element={<Categorias/>} />
-          <Route exact path="/cupons" element={<Cupons />} />
-        </Routes> 
+
+          {/* Páginas privadas */}
+          <Route path="/home" element={<Private Item={Home} />} />
+          <Route path="/pedidos" element={<Private Item={Pedidos} />} />
+          <Route path="/clientes" element={<Private Item={Clientes} />} />
+          <Route path="/administradores" element={<Private Item={Administradores} />} />
+          <Route path="/produtos" element={<Private Item={ProdutosList} />} />
+          <Route path="/criarproduto" element={<Private Item={CriarProduto} />} />
+          <Route path="/categorias" element={<Private Item={Categorias} />} />
+          <Route path="/cupons" element={<Private Item={Cupons} />} />
+
+          </Routes>
       </Fragment>
     </BrowserRouter>
   );

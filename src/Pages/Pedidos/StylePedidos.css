@@ -1,16 +1,112 @@
-.appbar-pedidos {
-    background-color: #c54444 !important;  
-  }
-.title-pedidos{
-    text-align:center  !important;
-    
+/* Container principal de pedidos */
+.pedido-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Cards com tamanhos automáticos */
+  gap: 20px;
+  justify-items: center; /* Centraliza os itens dentro do grid */
+  margin: 20px;
+  grid-template-rows: auto 1fr; /* Alinha o título na primeira linha e os cards nas seguintes */
 }
-  
-  .container {
-    padding: 20px;
-  }
-  
-  .flex-grow {
-    flex-grow: 1;
-  }
-  
+
+/* Estilo do título */
+.title-pedido {
+  text-align: center;
+  font-size:30px;
+  color: #333;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  grid-column: span 4; /* Faz o título ocupar toda a largura */
+}
+
+/* Card de pedidos */
+.pedido-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 350px; /* Limita a largura do card */
+}
+
+/* Estilo de hover no card */
+.pedido-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Título do pedido */
+.pedido-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Informações do pedido */
+.pedido-card p {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Estilo para o botão de expandir detalhes */
+.seta-expandir {
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+
+.seta-expandir:hover {
+  color: #555;
+}
+
+/* Estilo de lista de produtos */
+.produtos-list {
+  margin-top: 10px;
+  padding-left: 20px;
+  display: none;
+}
+
+.produtos-list.expandido {
+  display: block;
+}
+
+/* Item de produto */
+.produto-item {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.produto-item h3 {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.produto-item p {
+  font-size: 1rem;
+  color: #555;
+  margin: 4px 0;
+}
+
+/* Estilo de cupom aplicado ao produto */
+.cupom-info {
+  background-color: #f1f8e9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.cupom-info p {
+  font-weight: bold;
+  color: #388e3c;
+}
