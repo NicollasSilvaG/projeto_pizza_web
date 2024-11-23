@@ -5,18 +5,34 @@ body {
   background-color: #f9f9f9;
 }
 
+/* AppBar de Categorias */
+.appbar-categorias {
+  background-color: #c54444 !important;  /* Cor de fundo da AppBar */
+}
+
+.title-categorias {
+  text-align: left !important;  /* Alinha o título à esquerda */
+  padding-left: 20px;  /* Espaço à esquerda para o título */
+  margin-top: 0;  /* Remove qualquer margem superior */
+  margin: 0;  /* Remove margens desnecessárias */
+  color: white;  /* Cor do texto do título */
+}
+
+/* Container principal das Categorias */
 .categorias-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
 }
 
+/* Título da página */
 h1 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
+/* Tabela de Categorias */
 .categorias-table {
   width: 100%;
   border-collapse: collapse;
@@ -43,4 +59,96 @@ h1 {
 
 .categorias-table tr:hover {
   background-color: #f1f1f1;
+}
+
+/* Formulário de Criação de Categoria */
+.formulario {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.formulario input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.formulario button {
+  padding: 12px 24px;  /* Aumentei o tamanho do botão */
+  font-size: 16px;  /* Aumentei o tamanho da fonte */
+  background-color: #d82837;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background-color: #660d0d;
+}
+
+/* Botão Adicionar com "+" */
+.formulario button.adicionar {
+  padding: 12px 24px;  /* Aumentei o tamanho */
+  font-size: 16px;
+  background-color: #4CAF50;  /* Cor verde para Adicionar */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.formulario button.adicionar:hover {
+  background-color: #45a049;
+}
+
+/* Botões Salvar e Cancelar com as novas cores e tamanho aumentado */
+.formulario .salvar {
+  padding: 14px 28px;  /* Tamanho aumentado */
+  font-size: 18px;  /* Tamanho da fonte aumentado */
+  background-color: #4CAF50;  /* Verde para salvar */
+}
+
+.formulario .salvar:hover {
+  background-color: #45a049;
+}
+
+.formulario .cancelar {
+  padding: 14px 28px;  /* Tamanho aumentado */
+  font-size: 18px;  /* Tamanho da fonte aumentado */
+  background-color: #f44336;  /* Vermelho para cancelar */
+}
+
+.formulario .cancelar:hover {
+  background-color: #e53935;
+}
+
+/* Botões Editar e Excluir com cores específicas */
+.categorias-table .editar {
+  padding: 6px 12px;
+  background-color: #ffd700;  /* Cor dourada para Editar */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.categorias-table .editar:hover {
+  background-color: #ffcc00;
+}
+
+.categorias-table .excluir {
+  padding: 6px 12px;
+  background-color: #f44336;  /* Vermelho para Excluir */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.categorias-table .excluir:hover {
+  background-color: #e53935;
 }

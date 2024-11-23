@@ -106,7 +106,7 @@ const Pedidos = () => {
                     <p><strong>Valor Total:</strong> R${produto.valorTotal}</p>
                     {produto.cupom && (
                       <div className="cupom-info">
-                        <p><strong>Desconto do Cupom:</strong> {produto.cupom.codigo}</p>
+                        <p><strong>Cupom:</strong> {produto.cupom.codigo}</p>
                         <p><strong>Desconto Aplicado:</strong> R${produto.valorTotal - (produto.precoUnitario * produto.quantidade)}</p>
                       </div>
                     )}

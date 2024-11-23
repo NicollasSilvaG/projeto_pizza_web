@@ -8,32 +8,33 @@
 /* Barra superior (App Bar) */
 .app-bar {
     display: flex;
-    align-items: center;
+    align-items: center; /* Centraliza os itens verticalmente */
     background-color: #c54444; /* Cor da App Bar */
     color: white;
     padding: 15px 20px;
     margin-bottom: 10px; /* Espaço abaixo da App Bar */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0px; /* Remover bordas arredondadas */
-    justify-content: space-between; /* Alinha os itens à esquerda e direita */
 }
 
 /* Título */
 .app-bar h1 {
     color: white; /* Título em branco */
     margin: 0;
-    font-size: 20px;
+    font-size: 32px;
+    flex-grow: 0; /* Impede que o título ocupe espaço extra */
+    
 }
 
 /* Botão Voltar (X) */
 .btn-voltar {
     background: transparent;
-    color: black;
     border: none;
-    font-size: 24px;
     cursor: pointer;
     padding: 0;
-    margin: 0;
+    margin-right: 10px; /* Espaçamento mínimo entre botão e título */
+    display: flex;
+    align-items: center;
 }
 
 /* Botão Voltar (X) - Efeito Hover */
