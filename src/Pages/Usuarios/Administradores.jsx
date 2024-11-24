@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Para navegação
+import { useNavigate } from "react-router-dom";
 import { AdminController } from "../../context/AdminController";
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider, Dialog, DialogActions, DialogContent, DialogTitle, Button, TextField } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import OrderIcon from "@mui/icons-material/Assignment";
@@ -22,6 +22,7 @@ const Administradores = () => {
   const [carregando, setCarregando] = useState(true);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
+  const [openModal, setOpenModal] = useState(false); // Controle do modal
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,6 +56,7 @@ const Administradores = () => {
   const handleEditar = (idAutenticacao) => {
     const usuario = usuariosList.find((user) => user.idAutenticacao === idAutenticacao);
     setUsuarioEmEdicao(usuario);
+    setOpenModal(true); // Abre o modal ao editar
   };
 
   const handleAtualizar = async () => {
@@ -67,6 +69,7 @@ const Administradores = () => {
           );
           setUsuariosList(updatedUsuariosList);
           setUsuarioEmEdicao(null);
+          setOpenModal(false); // Fecha o modal após salvar
         }
       }
     } catch (error) {
@@ -90,7 +93,7 @@ const Administradores = () => {
     <div style={{ width: drawerWidth }} role="presentation">
       <div style={{ backgroundColor: '#c54444', textAlign: 'center', padding: '16px' }}>
         <img 
-          src="/public/assets/logotipo01.png" 
+          src="/assets/logotipo01.png" 
           alt="Logo" 
           style={{ width: '125px', height: 'auto' }} 
         />
@@ -161,14 +164,13 @@ const Administradores = () => {
   return (
     <div>
       <AppBar position="static" className="appbar-administrador">
-  <Toolbar style={{ display: 'flex', alignItems: 'center' }}>
-    <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
-      <MenuIcon />
-    </IconButton>
-    {/* Título com a classe CSS que foi definida */}
-    <h1 className="titulo-administrador">Gerenciar Administradores</h1>
-  </Toolbar>
-</AppBar>
+        <Toolbar style={{ display: 'flex', alignItems: 'center' }}>
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+            <MenuIcon />
+          </IconButton>
+          <h1 className="titulo-administrador">Gerenciar Administradores</h1>
+        </Toolbar>
+      </AppBar>
 
       <Drawer 
         anchor="left" 
@@ -183,55 +185,55 @@ const Administradores = () => {
       {carregando ? (
         <p>Carregando...</p>
       ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Login</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usuariosList.map((usuario) => (
-              <tr key={usuario.idAutenticacao}>
-                <td>{usuario.nome}</td>
-                <td>{usuario.login}</td>
-                <td>
-                  <button onClick={() => handleEditar(usuario.idAutenticacao)}>Editar</button>
-                  <button onClick={() => handleDeletar(usuario.idAutenticacao)}>Excluir</button>
-                </td>
+        <div className="tabela-container">
+          <table className="table-administrador">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Login</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {/* Modal ou Formulário de Edição */}
-      {usuarioEmEdicao && (
-        <div>
-          <h2>Editar Usuário</h2>
-          <label>
-            Nome:
-            <input
-              type="text"
-              value={usuarioEmEdicao.nome}
-              onChange={(e) => setUsuarioEmEdicao({ ...usuarioEmEdicao, nome: e.target.value })}
-            />
-          </label>
-          <br />
-          <label>
-            Login:
-            <input
-              type="text"
-              value={usuarioEmEdicao.login}
-              onChange={(e) => setUsuarioEmEdicao({ ...usuarioEmEdicao, login: e.target.value })}
-            />
-          </label>
-          <br />
-          <button onClick={handleAtualizar}>Salvar Alterações</button>
-          <button onClick={() => setUsuarioEmEdicao(null)}>Cancelar</button>
+            </thead>
+            <tbody>
+              {usuariosList.map((usuario) => (
+                <tr key={usuario.idAutenticacao}>
+                  <td>{usuario.nome}</td>
+                  <td>{usuario.login}</td>
+                  <td>
+                    <button className="editar" onClick={() => handleEditar(usuario.idAutenticacao)}>Editar</button>
+                    <button className="excluir" onClick={() => handleDeletar(usuario.idAutenticacao)}>Excluir</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
+
+      {/* Modal para Edição */}
+      <Dialog open={openModal} onClose={() => setOpenModal(false)}>
+        <DialogTitle>Editar Usuário</DialogTitle>
+        <DialogContent>
+          <TextField
+            label="Nome"
+            fullWidth
+            margin="normal"
+            value={usuarioEmEdicao?.nome || ''}
+            onChange={(e) => setUsuarioEmEdicao({ ...usuarioEmEdicao, nome: e.target.value })}
+          />
+          <TextField
+            label="Login"
+            fullWidth
+            margin="normal"
+            value={usuarioEmEdicao?.login || ''}
+            onChange={(e) => setUsuarioEmEdicao({ ...usuarioEmEdicao, login: e.target.value })}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button className="cancelarEdicao" onClick={() => setOpenModal(false)} color="primary">Cancelar</Button>
+          <Button className="salvarEdicao" onClick={handleAtualizar} color="primary">Salvar</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

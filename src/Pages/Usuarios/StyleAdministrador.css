@@ -27,9 +27,10 @@
 
 /* Estilos para a tabela de usuários */
 .table-administrador {
-  width: 100%;
+  width: 80%; /* Reduz a largura da tabela para 80% da tela */
+  max-width: 1000px; /* Limita a largura máxima da tabela */
+  margin: 20px auto; /* Adiciona margem superior e inferior de 20px e centraliza horizontalmente */
   border-collapse: collapse; /* Remove espaços entre células da tabela */
-  margin-top: 20px; /* Adiciona uma margem superior à tabela */
 }
 
 .table-administrador th, .table-administrador td {
@@ -46,6 +47,13 @@
   background-color: #f9f9f9; /* Altere a cor de fundo para linhas pares */
 }
 
+.tabela-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Estilo para os botões de ação */
 button-administrador {
   padding: 6px 12px;
   margin-right: 10px;
@@ -73,4 +81,44 @@ button-administrador:hover {
 button-administrador:disabled {
   background-color: #ddd; /* Desabilita o botão com uma cor cinza */
   cursor: not-allowed;
+}
+
+/* Botão Salvar */
+button.salvarEdicao {
+  background-color: #4CAF50; /* Cor verde */
+  color: white;
+}
+
+button.salvarEdicao:hover {
+  background-color: #45a049;
+}
+
+/* Botão Cancelar */
+button.cancelarEdicao {
+  background-color: #f44336; /* Cor vermelha */
+  color: white;
+}
+
+button.cancelarEdicao:hover {
+  background-color: #e53935;
+}
+
+/* Botão Editar */
+button.editar {
+  background-color: #ffd700; /* Cor dourada */
+  color: white;
+}
+
+button.editar:hover {
+  background-color: #ffcc00;
+}
+
+/* Botão Excluir */
+button.excluir {
+  background-color: #f44336; /* Cor vermelha */
+  color: white;
+}
+
+button.excluir:hover {
+  background-color: #e53935;
 }
