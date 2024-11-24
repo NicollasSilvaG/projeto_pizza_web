@@ -11,13 +11,9 @@ import CuponIcon from "@mui/icons-material/LocalOffer";
 import ExpandLess from "@mui/icons-material/ExpandLess"; 
 import ExpandMore from "@mui/icons-material/ExpandMore"; 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-<<<<<<< HEAD
 import LocationOnIcon from '@mui/icons-material/LocationOn'; 
-import { useAuth } from "../../Hooks/useAuth"; 
-=======
-import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; 
-//import { useAuth } from "../../Hooks/useAuth"; 
->>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
+//import { useAuth } from "../../Hooks/useAuth";
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import "./StyleHome.css";  
 
 const drawerWidth = 240;
@@ -33,11 +29,7 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-<<<<<<< HEAD
-    signout(); // Remove o usuário e limpa o token
-=======
-    //logout(); // Remove o usuário e limpa o token
->>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
+    //signout(); // Remove o usuário e limpa o token
     navigate("/login"); // Redireciona para a página de login
   };
 
@@ -110,11 +102,6 @@ const Home = () => {
         <ListItem button onClick={navigateTo("/cupons")}>
           <ListItemIcon><CuponIcon /></ListItemIcon>
           <ListItemText primary="Cupons" />
-        </ListItem>
-        
-        <ListItem button onClick={navigateTo("/pizzaria")}>
-          <ListItemIcon><LocationOnIcon /></ListItemIcon>
-          <ListItemText primary="Sobre" />
         </ListItem>
 
         <Divider sx={{ marginY: 2 }} />

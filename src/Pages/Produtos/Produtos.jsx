@@ -55,13 +55,27 @@ const ProdutosList = () => {
             setError("Erro ao carregar produtos.");
         }
     };
-    
+
     useEffect(() => {
         fetchProdutos();
     }, []);
 
     const handleCriarProduto = () => {
         navigate('/criarproduto'); // Redireciona para a página /criarproduto
+    };
+
+    // Função para excluir o produto
+    const handleExcluirProduto = async (idProduto) => {
+        const confirmacao = window.confirm("Você tem certeza que deseja excluir este produto?");
+        if (confirmacao) {
+            try {
+                await ProdutoService.delete(idProduto); // Exclui o produto via API
+                setProdutos(produtos.filter(produto => produto.idProduto !== idProduto)); // Atualiza o estado local
+            } catch (error) {
+                console.error("Erro ao excluir produto:", error);
+                setError("Erro ao excluir produto.");
+            }
+        }
     };
 
     const drawerList = () => (
@@ -188,6 +202,16 @@ const ProdutosList = () => {
                                     <p><strong>Quantidade:</strong> {produto.quantidade || 'Não informado'}</p>
                                     <p><strong>Tamanho:</strong> {produto.tamanho || 'Não informado'}</p>
                                     <p><strong>Categoria:</strong> {produto.categoria?.tipo || 'Sem categoria'}</p>
+
+                                    {/* Botões de Editar e Excluir */}
+                                    <div className="produto-actions">
+                                        <button className="btn-editar" onClick={() => navigate(`/editarproduto/${produto.idProduto}`)}>
+                                            Editar
+                                        </button>
+                                        <button className="btn-excluir" onClick={() => handleExcluirProduto(produto.idProduto)}>
+                                            Excluir
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         ))}

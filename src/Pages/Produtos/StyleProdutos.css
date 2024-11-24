@@ -44,6 +44,29 @@
   background-color: #660d0d;
 }
 
+.btn-editar, .btn-excluir {
+  background-color: #ffd700;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-editar:hover {
+  background-color: #ffcc00;
+}
+
+.btn-excluir {
+  background-color: #f44336;
+}
+
+.btn-excluir:hover {
+  background-color: #e53935;
+}
+
 h1 {
   text-align: center;
   margin-top: -10px; /* Para dar espaço para o botão */

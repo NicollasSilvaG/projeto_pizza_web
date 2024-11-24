@@ -12,7 +12,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
-import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; 
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import './StylePedidos.css';
 
 const drawerWidth = 240;
@@ -23,44 +23,27 @@ const Pedidos = () => {
   const [error, setError] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
+  const [expandido, setExpandido] = useState({}); // Armazena o estado de cada pedido (expandido ou não)
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
     navigate("/login");
     toggleDrawer(false)();
+  };
+
+  const handleSubMenuToggle = (menu) => {
+    setOpenSubMenu((prevState) => ({ ...prevState, [menu]: !prevState[menu] }));
 };
 
-  useEffect(() => {
-    const fetchPedidos = async () => {
-      try {
-        const response = await axios.get('http://localhost:3070/flutter/pedidos');
-        const pedidosData = response.data;
+  const navigateTo = (path) => () => {
+    navigate(path);
+    toggleDrawer(false)();
+};
 
-        const pedidosComProdutos = await Promise.all(
-          pedidosData.map(async (pedido) => {
-            try {
-              const produtosResponse = await axios.get(`http://localhost:3070/flutter/carrinho/${pedido.idPedido}`);
-              return { ...pedido, produtos: produtosResponse.data };
-            } catch (produtosError) {
-              console.error(`Erro ao buscar produtos do pedido ${pedido.idPedido}:`, produtosError);
-              return { ...pedido, produtos: [] };
-            }
-          })
-        );
-
-        setPedidos(pedidosComProdutos);
-      } catch (err) {
-        console.error('Erro ao buscar pedidos:', err);
-        setError('Erro ao carregar os pedidos');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPedidos();
-  }, []);
-
-  const [expandido, setExpandido] = useState({}); // Armazena o estado de cada pedido (expandido ou não)
+  const toggleDrawer = (open) => () => {
+    setIsDrawerOpen(open);
+  };
 
   const toggleExpandir = (idPedido) => {
     setExpandido((prevState) => ({
@@ -69,8 +52,6 @@ const Pedidos = () => {
     }));
   };
 
-<<<<<<< HEAD
-  // Função para formatar data e hora no fuso horário brasileiro
   const formatarData = (dataISO) => {
     const opcoes = {
       day: '2-digit',
@@ -84,20 +65,35 @@ const Pedidos = () => {
     return new Intl.DateTimeFormat('pt-BR', opcoes).format(new Date(dataISO));
   };
 
-=======
-  // Funções do Drawer
-  const toggleDrawer = (open) => () => {
-    setIsDrawerOpen(open);
+  const fetchPedidos = async () => {
+    try {
+      const response = await axios.get('http://localhost:3070/flutter/pedidos');
+      const pedidosData = response.data;
+
+      const pedidosComProdutos = await Promise.all(
+        pedidosData.map(async (pedido) => {
+          try {
+            const produtosResponse = await axios.get(`http://localhost:3070/flutter/carrinho/${pedido.idPedido}`);
+            return { ...pedido, produtos: produtosResponse.data };
+          } catch (produtosError) {
+            console.error(`Erro ao buscar produtos do pedido ${pedido.idPedido}:`, produtosError);
+            return { ...pedido, produtos: [] };
+          }
+        })
+      );
+
+      setPedidos(pedidosComProdutos);
+    } catch (err) {
+      console.error('Erro ao buscar pedidos:', err);
+      setError('Erro ao carregar os pedidos');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleSubMenuToggle = (menu) => {
-    setOpenSubMenu((prevState) => ({ ...prevState, [menu]: !prevState[menu] }));
-  };
-
-  const navigateTo = (path) => () => {
-    navigate(path);
-    toggleDrawer(false)();
-  };
+  useEffect(() => {
+    fetchPedidos();
+  }, []);
 
   const drawerList = () => (
     <div style={{ width: drawerWidth }} role="presentation">
@@ -110,73 +106,72 @@ const Pedidos = () => {
       </div>
 
       <List>
-                <ListItem button onClick={navigateTo("/home")}>
-                    <ListItemIcon><HomeIcon /></ListItemIcon>
-                    <ListItemText primary="Home" />
-                </ListItem>
+        <ListItem button onClick={navigateTo("/home")}>
+          <ListItemIcon><HomeIcon /></ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
 
-                <ListItem button onClick={navigateTo("/pizzaria")}>
-                    <ListItemIcon><LocalPizzaIcon /></ListItemIcon>
-                    <ListItemText primary="Pizzaria" />
-                </ListItem>
+        <ListItem button onClick={navigateTo("/pizzaria")}>
+          <ListItemIcon><LocalPizzaIcon /></ListItemIcon>
+          <ListItemText primary="Pizzaria" />
+        </ListItem>
 
-                <ListItem button onClick={navigateTo("/pedidos")}>
-                    <ListItemIcon><OrderIcon /></ListItemIcon>
-                    <ListItemText primary="Pedidos" />
-                </ListItem>
+        <ListItem button onClick={navigateTo("/pedidos")}>
+          <ListItemIcon><OrderIcon /></ListItemIcon>
+          <ListItemText primary="Pedidos" />
+        </ListItem>
 
-                <ListItem button onClick={() => handleSubMenuToggle("users")}>
-                    <ListItemIcon><UserIcon /></ListItemIcon>
-                    <ListItemText primary="Usuários" />
-                    {openSubMenu.users ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={openSubMenu.users} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button onClick={navigateTo("/clientes")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-                            <ListItemText primary="Gerenciar Clientes" />
-                        </ListItem>
-                        <ListItem button onClick={navigateTo("/administradores")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-                            <ListItemText primary="Gerenciar Administradores" />
-                        </ListItem>
-                    </List>
-                </Collapse>
+        <ListItem button onClick={() => handleSubMenuToggle("users")}>
+          <ListItemIcon><UserIcon /></ListItemIcon>
+          <ListItemText primary="Usuários" />
+          {openSubMenu.users ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openSubMenu.users} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button onClick={navigateTo("/clientes")} style={{ paddingLeft: drawerWidth * 0.1 }}>
+              <ListItemText primary="Gerenciar Clientes" />
+            </ListItem>
+            <ListItem button onClick={navigateTo("/administradores")} style={{ paddingLeft: drawerWidth * 0.1 }}>
+              <ListItemText primary="Gerenciar Administradores" />
+            </ListItem>
+          </List>
+        </Collapse>
 
-                <ListItem button onClick={() => handleSubMenuToggle("products")}>
-                    <ListItemIcon><ProductIcon /></ListItemIcon>
-                    <ListItemText primary="Produtos" />
-                    {openSubMenu.products ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={openSubMenu.products} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button onClick={navigateTo("/produtos")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-                            <ListItemText primary="Gerenciar Produtos" />
-                        </ListItem>
-                        <ListItem button onClick={navigateTo("/categorias")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-                            <ListItemText primary="Gerenciar Categorias" />
-                        </ListItem>
-                    </List>
-                </Collapse>
+        <ListItem button onClick={() => handleSubMenuToggle("products")}>
+          <ListItemIcon><ProductIcon /></ListItemIcon>
+          <ListItemText primary="Produtos" />
+          {openSubMenu.products ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openSubMenu.products} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button onClick={navigateTo("/produtos")} style={{ paddingLeft: drawerWidth * 0.1 }}>
+              <ListItemText primary="Gerenciar Produtos" />
+            </ListItem>
+            <ListItem button onClick={navigateTo("/categorias")} style={{ paddingLeft: drawerWidth * 0.1 }}>
+              <ListItemText primary="Gerenciar Categorias" />
+            </ListItem>
+          </List>
+        </Collapse>
 
-                <ListItem button onClick={navigateTo("/cupons")}>
-                    <ListItemIcon><CuponIcon /></ListItemIcon>
-                    <ListItemText primary="Cupons" />
-                </ListItem>
+        <ListItem button onClick={navigateTo("/cupons")}>
+          <ListItemIcon><CuponIcon /></ListItemIcon>
+          <ListItemText primary="Cupons" />
+        </ListItem>
 
-                <Divider sx={{ marginY: 2 }} />
+        <Divider sx={{ marginY: 2 }} />
 
-                <ListItem button onClick={navigateTo("/minha-conta")}>
-                    <ListItemIcon><AccountCircle /></ListItemIcon>
-                    <ListItemText primary="Minha Conta" />
-                </ListItem>
-                <ListItem button onClick={handleLogout}>
-                    <ListItemIcon><LogoutIcon /></ListItemIcon>
-                    <ListItemText primary="Sair" />
-                </ListItem>
-            </List>
+        <ListItem button onClick={navigateTo("/minha-conta")}>
+          <ListItemIcon><AccountCircle /></ListItemIcon>
+          <ListItemText primary="Minha Conta" />
+        </ListItem>
+        <ListItem button onClick={handleLogout}>
+          <ListItemIcon><LogoutIcon /></ListItemIcon>
+          <ListItemText primary="Sair" />
+        </ListItem>
+      </List>
     </div>
   );
 
->>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
   if (loading) {
     return <div>Carregando pedidos...</div>;
   }
@@ -186,42 +181,26 @@ const Pedidos = () => {
   }
 
   return (
-<<<<<<< HEAD
     <div className="pedido-container">
-      <h1 className='title-pedido'>Lista de Pedidos</h1>
-      {pedidos.length === 0 ? (
-        <p>Nenhum pedido encontrado.</p>
-      ) : (
-        pedidos.map((pedido) => (
-          <div key={pedido.idPedido} className="pedido-card">
-            <h2>Pedido ID: {pedido.idPedido}</h2>
-            <p><strong>Status:</strong> {pedido.status}</p>
-            <p><strong>Tipo de Pagamento:</strong> {pedido.tipo_pagamento}</p>
-            <p><strong>Data do Pedido:</strong> {formatarData(pedido.dataPedido)}</p>
-            <p><strong>Usuário:</strong> {pedido.usuario ? pedido.usuario.nome : 'Usuário não encontrado'}</p>
-=======
-    <div>
-      <AppBar position="static" style={{ backgroundColor: '#c54444' }}>
+      <AppBar position="fixed" className="appbar-pedidos">
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
+          <IconButton edge="start" color="inherit" onClick={toggleDrawer(true)}>
             <MenuIcon />
           </IconButton>
-          <h1 style={{ textAlign: 'left', paddingLeft: '20px', margin: 0, color: 'white' }}>Pedidos</h1>
+          <h1 className="title-pedidos">Pedidos</h1>
         </Toolbar>
       </AppBar>
->>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
 
       <Drawer 
         anchor="left" 
         open={isDrawerOpen} 
-        onClose={toggleDrawer(false)}
+        onClose={toggleDrawer(false)} 
         PaperProps={{ style: { width: drawerWidth } }}
       >
         {drawerList()}
       </Drawer>
 
-      <div className="pedido-container">
-        <h1 className='title-pedido'>Lista de Pedidos</h1>
+      <div className="pedido-list">
         {pedidos.length === 0 ? (
           <p>Nenhum pedido encontrado.</p>
         ) : (
@@ -230,8 +209,9 @@ const Pedidos = () => {
               <h2>Pedido ID: {pedido.idPedido}</h2>
               <p><strong>Status:</strong> {pedido.status}</p>
               <p><strong>Tipo de Pagamento:</strong> {pedido.tipo_pagamento}</p>
+              <p><strong>Data do Pedido:</strong> {formatarData(pedido.dataPedido)}</p>
               <p><strong>Usuário:</strong> {pedido.usuario ? pedido.usuario.nome : 'Usuário não encontrado'}</p>
-              
+
               {/* Exibindo o endereço completo */}
               <div>
                 <h3>Endereço de Entrega:</h3>
@@ -255,7 +235,7 @@ const Pedidos = () => {
                 className="seta-expandir"
                 onClick={() => toggleExpandir(pedido.idPedido)}
               >
-                {expandido[pedido.idPedido] ? '▲' : '▼'} {/* Mostra a seta dependendo do estado */}
+                {expandido[pedido.idPedido] ? '▲' : '▼'}
               </div>
 
               {/* Lista de produtos - visível quando o estado de expandir for verdadeiro */}

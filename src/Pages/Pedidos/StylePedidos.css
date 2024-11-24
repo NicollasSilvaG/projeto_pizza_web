@@ -1,14 +1,15 @@
 /* AppBar para a tela de Pedidos */
 .appbar-pedidos {
   background-color: #c54444 !important;
+  z-index: 1201; /* Garantir que a AppBar fique sobre o conteúdo */
 }
 
 /* Título na AppBar */
 .title-pedidos {
-  text-align: left !important; 
-  padding-left: 20px; 
-  margin: 0; 
-  color: white; 
+  text-align: left !important;
+  padding-left: 20px;
+  margin: 0;
+  color: white;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -17,7 +18,7 @@
   padding: 20px;
   font-family: 'Arial', sans-serif;
   position: relative;
-  margin-top: 60px;
+  margin-top: 60px; /* Ajuste para garantir que o conteúdo não sobreponha a AppBar */
 }
 
 /* Estilo do Título Principal */
