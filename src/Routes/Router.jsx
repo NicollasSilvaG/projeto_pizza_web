@@ -14,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import ProdutosList from '../Pages/Produtos/Produtos';
 import CriarProduto from '../Pages/Produtos/CriarProduto';
 import Categorias from '../Pages/Categorias/Categorias';
+import BuscarPizzaria from '../Pages/Pizzaria/Pizzaria';
+import TelaUsuarioLogado from '../Pages/MinhaConta/TelaUsuarioLogado';
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -46,6 +48,8 @@ const RoutesApp = () => {
           <Route path="/criarproduto" element={<Private Item={CriarProduto} />} />
           <Route path="/categorias" element={<Private Item={Categorias} />} />
           <Route path="/cupons" element={<Private Item={Cupons} />} />
+          <Route path="/pizzaria" element={<Private Item={BuscarPizzaria} />} />
+          <Route path="/minhaconta" element={<Private Item={TelaUsuarioLogado} />} />
 
           </Routes>
       </Fragment>

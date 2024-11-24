@@ -46,6 +46,20 @@ const Pedidos = () => {
     }));
   };
 
+  // Função para formatar data e hora no fuso horário brasileiro
+  const formatarData = (dataISO) => {
+    const opcoes = {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'America/Sao_Paulo',
+    };
+    return new Intl.DateTimeFormat('pt-BR', opcoes).format(new Date(dataISO));
+  };
+
   if (loading) {
     return <div>Carregando pedidos...</div>;
   }
@@ -65,6 +79,7 @@ const Pedidos = () => {
             <h2>Pedido ID: {pedido.idPedido}</h2>
             <p><strong>Status:</strong> {pedido.status}</p>
             <p><strong>Tipo de Pagamento:</strong> {pedido.tipo_pagamento}</p>
+            <p><strong>Data do Pedido:</strong> {formatarData(pedido.dataPedido)}</p>
             <p><strong>Usuário:</strong> {pedido.usuario ? pedido.usuario.nome : 'Usuário não encontrado'}</p>
 
             {/* Exibindo o endereço completo */}

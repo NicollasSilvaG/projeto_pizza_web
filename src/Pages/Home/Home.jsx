@@ -10,7 +10,8 @@ import ProductIcon from "@mui/icons-material/Inventory";
 import CuponIcon from "@mui/icons-material/LocalOffer"; 
 import ExpandLess from "@mui/icons-material/ExpandLess"; 
 import ExpandMore from "@mui/icons-material/ExpandMore"; 
-import AccountCircle from "@mui/icons-material/AccountCircle"; 
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import LocationOnIcon from '@mui/icons-material/LocationOn'; 
 import { useAuth } from "../../Hooks/useAuth"; 
 import "./StyleHome.css";  
 
@@ -27,7 +28,7 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    logout(); // Remove o usuário e limpa o token
+    signout(); // Remove o usuário e limpa o token
     navigate("/login"); // Redireciona para a página de login
   };
 
@@ -96,13 +97,19 @@ const Home = () => {
           <ListItemIcon><CuponIcon /></ListItemIcon>
           <ListItemText primary="Cupons" />
         </ListItem>
+        
+        <ListItem button onClick={navigateTo("/pizzaria")}>
+          <ListItemIcon><LocationOnIcon /></ListItemIcon>
+          <ListItemText primary="Sobre" />
+        </ListItem>
 
         <Divider sx={{ marginY: 2 }} />
 
-        <ListItem button onClick={navigateTo("/minha-conta")}>
+        <ListItem button onClick={navigateTo("/minhaconta")}>
           <ListItemIcon><AccountCircle /></ListItemIcon>
           <ListItemText primary="Minha Conta" />
         </ListItem>
+        
         <ListItem button onClick={handleLogout}>
           <ListItemIcon><LogoutIcon /></ListItemIcon>
           <ListItemText primary="Sair" />

@@ -1,0 +1,60 @@
+/* src/styles/BuscarPizzaria.css */
+
+.buscar-pizzaria-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #343a40;
+    text-align: center;
+  }
+  
+  .erro {
+    color: red;
+    text-align: center;
+  }
+  
+  .pizzarias-list {
+    margin-top: 20px;
+  }
+  
+  .pizzaria-card {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .pizzaria-card h4 {
+    color: #61170a;
+    margin-bottom: 10px;
+    font-size: 22px;
+  }
+  
+  .pizzaria-card p {
+    margin: 5px 0;
+  }
+  
+  .pizzaria-card strong {
+    color: #343a40;
+  }
+  .voltar-btn {
+    background-color: #61170a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .voltar-btn:hover {
+    background-color: #61170a;
+  }
