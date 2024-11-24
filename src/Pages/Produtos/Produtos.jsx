@@ -4,7 +4,7 @@ import ProdutoService from '../../context/ProdutoController';
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import OrderIcon from "@mui/icons-material/Receipt";
+import OrderIcon from "@mui/icons-material/Assignment";
 import UserIcon from "@mui/icons-material/People";
 import ProductIcon from "@mui/icons-material/Inventory";
 import CuponIcon from "@mui/icons-material/LocalOffer";
