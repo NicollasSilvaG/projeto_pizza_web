@@ -178,6 +178,23 @@ const ClientePage = () => {
                         </ListItem>
                     </List>
                 </Collapse>
+
+                <ListItem button onClick={() => handleSubMenuToggle("products")}>
+          <ListItemIcon><ProductIcon /></ListItemIcon>
+          <ListItemText primary="Produtos" />
+          {openSubMenu.products ? <ExpandLess /> : <ExpandMore />}
+        </ListItem>
+        <Collapse in={openSubMenu.products} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button onClick={navigateTo("/produtos")} style={{ paddingLeft: drawerWidth * 0.1 }}>
+              <ListItemText primary="Gerenciar Produtos" />
+            </ListItem>
+            <ListItem button onClick={navigateTo("/categorias")} style={{ paddingLeft: drawerWidth * 0.1 }}>
+              <ListItemText primary="Gerenciar Categorias" />
+            </ListItem>
+          </List>
+        </Collapse>
+
                 <ListItem button onClick={navigateTo("/cupons")}>
                     <ListItemIcon><CuponIcon /></ListItemIcon>
                     <ListItemText primary="Cupons" />
