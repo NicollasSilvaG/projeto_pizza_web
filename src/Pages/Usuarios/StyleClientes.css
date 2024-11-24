@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f9;
+  background-color: #f9f9f9; /* Cor de fundo neutra */
   color: #333;
 }
 
@@ -30,23 +30,23 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
-  background-color: #ffffffad;
+  background-color: #ffffffad; /* Adiciona um tom suave de fundo */
 }
 
 /* Estilo para o cabeçalho da tabela */
 thead th {
   text-align: left;
-  padding: 10px;
-  background: #720703; /* Cor de fundo */
-  color: white; /* Cor do texto */
+  padding: 12px;  /* Aumentei o padding para mais espaço */
+  background: #f1f1f1; /* Cor de fundo */
+  color: #333; /* Cor do texto */
   font-weight: bold;
-  border: 1px solid #ddd; /* Borda */
+  border: 1px solid #ddd; /* Borda suave */
 }
 
 /* Estilo específico para cada coluna */
 .Nome {
   text-align: left;
-  width: 20%; /* Ajuste o tamanho da coluna conforme necessário */
+  width: 20%;
 }
 
 .Email {
@@ -71,41 +71,114 @@ thead th {
 
 /* Estilo para o corpo da tabela */
 tbody td {
-  padding: 8px;
-  border: 1px solid #0000003d;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px; /* Melhorar legibilidade com texto de tamanho ajustado */
 }
 
 /* Cor de fundo alternada para as linhas */
 tbody tr:nth-child(even) {
-  background-color: #c21616;
+  background-color: #f9f9f9; /* Cor mais suave e clara */
 }
 
+/* Efeito de hover na linha */
 tbody tr:hover {
-  background-color: #f1f1f198;
+  background-color: #f1f1f1; /* Cor suave ao passar o mouse */
 }
-
 
 /* Botões */
 button {
-  padding: 8px 12px;
+  padding: 10px 16px; /* Aumentando o tamanho do botão para facilitar a interação */
   margin: 0 4px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px; /* Tamanho maior da fonte */
+  transition: all 0.3s ease; /* Transição suave ao passar o mouse */
 }
 
+/* Efeito de hover nos botões */
 button:hover {
   opacity: 0.9;
+  transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
 }
 
+/* Botão Salvar */
+button.salvarEdicao {
+  background-color: #4CAF50; /* Cor verde */
+  color: white;
+}
+
+button.salvarEdicao:hover {
+  background-color: #45a049;
+}
+
+/* Botão Cancelar */
+button.cancelarEdicao {
+  background-color: #f44336; /* Cor vermelha */
+  color: white;
+}
+
+button.cancelarEdicao:hover {
+  background-color: #e53935;
+}
+
+/* Botão Editar */
+button.editar {
+  background-color: #ffd700; /* Cor dourada */
+  color: white;
+}
+
+button.editar:hover {
+  background-color: #ffcc00;
+}
+
+/* Botão Excluir */
+button.excluir {
+  background-color: #f44336; /* Cor vermelha */
+  color: white;
+}
+
+button.excluir:hover {
+  background-color: #e53935;
+}
+
+/* Estilos para os botões de salvar e cancelar */
+.salvarEdicao,
+.cancelarEdicao {
+  padding: 10px 16px; /* Mesmo padding para ambos os botões */
+  margin: 0 5px; /* Espaçamento entre os botões */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 45%; /* Definindo a largura dos botões para que fiquem iguais */
+  display: inline-flex; /* Alinha os botões lado a lado */
+  justify-content: center; /* Garantir que o conteúdo do botão fique centralizado */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Usando flexbox para garantir o alinhamento correto e largura igual */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Adiciona espaçamento entre os botões */
+  width: 100%;
+  margin-top: 10px; /* Um pequeno espaço acima dos botões */
+}
+
+/* Espaçamento entre os botões */
+.salvarEdicao + .cancelarEdicao {
+  margin-left: 10px; /* Adiciona o espaçamento entre os botões */
+}
 
 /* Input de edição */
 input {
-  padding: 6px;
-  margin-bottom: 5px;
+  padding: 8px;
+  margin-bottom: 10px;
   border: 1px solid #cccccc;
   border-radius: 4px;
   width: calc(100% - 14px);
+  font-size: 16px; /* Melhor legibilidade */
 }
 
 /* Mensagem de erro */
@@ -113,4 +186,18 @@ input {
   color: #e74c3c;
   text-align: center;
   margin-bottom: 10px;
+}
+
+/* Ajuste para elementos no Drawer */
+.MuiDrawer-paper {
+  background-color: #fff !important;  /* Garantir fundo branco */
+  color: #333;  /* Cor dos textos no Drawer */
+}
+
+.MuiListItemText-primary {
+  color: #333;  /* Cor dos textos do item de menu */
+}
+
+.MuiListItemIcon {
+  color: #333;  /* Cor dos ícones dentro do Drawer */
 }

@@ -14,8 +14,13 @@ import { useNavigate } from 'react-router-dom';
 import ProdutosList from '../Pages/Produtos/Produtos';
 import CriarProduto from '../Pages/Produtos/CriarProduto';
 import Categorias from '../Pages/Categorias/Categorias';
+<<<<<<< HEAD
 import BuscarPizzaria from '../Pages/Pizzaria/Pizzaria';
 import TelaUsuarioLogado from '../Pages/MinhaConta/TelaUsuarioLogado';
+=======
+import Pizzaria from '../Pages/Pizzaria/Pizzaria';
+import MinhaConta from '../Pages/MinhaConta/MinhaConta';
+>>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -41,6 +46,7 @@ const RoutesApp = () => {
 
           {/* Páginas privadas */}
           <Route path="/home" element={<Private Item={Home} />} />
+          <Route path="/pizzaria" element={<Private Item={Pizzaria} />} />
           <Route path="/pedidos" element={<Private Item={Pedidos} />} />
           <Route path="/clientes" element={<Private Item={Clientes} />} />
           <Route path="/administradores" element={<Private Item={Administradores} />} />
@@ -48,8 +54,13 @@ const RoutesApp = () => {
           <Route path="/criarproduto" element={<Private Item={CriarProduto} />} />
           <Route path="/categorias" element={<Private Item={Categorias} />} />
           <Route path="/cupons" element={<Private Item={Cupons} />} />
+<<<<<<< HEAD
           <Route path="/pizzaria" element={<Private Item={BuscarPizzaria} />} />
           <Route path="/minhaconta" element={<Private Item={TelaUsuarioLogado} />} />
+=======
+          <Route path="/minha-conta" element={<Private Item={MinhaConta} />} />
+          
+>>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
 
           </Routes>
       </Fragment>

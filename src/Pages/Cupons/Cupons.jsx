@@ -4,7 +4,7 @@ import { buscarCupons, criarCupom, atualizarCupom, deletarCupom } from '../../co
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import OrderIcon from "@mui/icons-material/Receipt";
+import OrderIcon from "@mui/icons-material/Assignment";
 import UserIcon from "@mui/icons-material/People";
 import ProductIcon from "@mui/icons-material/Inventory";
 import CuponIcon from "@mui/icons-material/LocalOffer";
@@ -12,6 +12,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; 
 import './StyleCupons.css';
 
 const drawerWidth = 240;
@@ -131,6 +132,11 @@ const Cupons = () => {
         <ListItem button onClick={navigateTo("/home")}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText primary="Home" />
+        </ListItem>
+
+        <ListItem button onClick={navigateTo("/pizzaria")}>
+          <ListItemIcon><LocalPizzaIcon /></ListItemIcon>
+          <ListItemText primary="Pizzaria" />
         </ListItem>
 
         <ListItem button onClick={navigateTo("/pedidos")}>

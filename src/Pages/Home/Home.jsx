@@ -4,21 +4,26 @@ import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, List
 import MenuIcon from "@mui/icons-material/Menu"; 
 import LogoutIcon from "@mui/icons-material/Logout"; 
 import HomeIcon from "@mui/icons-material/Home"; 
-import OrderIcon from "@mui/icons-material/Receipt"; 
+import OrderIcon from "@mui/icons-material/Assignment"; 
 import UserIcon from "@mui/icons-material/People"; 
 import ProductIcon from "@mui/icons-material/Inventory"; 
 import CuponIcon from "@mui/icons-material/LocalOffer"; 
 import ExpandLess from "@mui/icons-material/ExpandLess"; 
 import ExpandMore from "@mui/icons-material/ExpandMore"; 
 import AccountCircle from "@mui/icons-material/AccountCircle";
+<<<<<<< HEAD
 import LocationOnIcon from '@mui/icons-material/LocationOn'; 
 import { useAuth } from "../../Hooks/useAuth"; 
+=======
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza'; 
+//import { useAuth } from "../../Hooks/useAuth"; 
+>>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
 import "./StyleHome.css";  
 
 const drawerWidth = 240;
 
 const Home = () => { 
-  const { signout } = useAuth(); 
+  //const { signout } = useAuth(); 
   const navigate = useNavigate(); 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false); 
   const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
@@ -28,7 +33,11 @@ const Home = () => {
   };
 
   const handleLogout = () => {
+<<<<<<< HEAD
     signout(); // Remove o usuário e limpa o token
+=======
+    //logout(); // Remove o usuário e limpa o token
+>>>>>>> 9c6b9a34a53e663e495a3ece44c1bbf7adba8201
     navigate("/login"); // Redireciona para a página de login
   };
 
@@ -54,6 +63,11 @@ const Home = () => {
         <ListItem button onClick={navigateTo("/home")}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText primary="Home" />
+        </ListItem>
+
+        <ListItem button onClick={navigateTo("/pizzaria")}>
+          <ListItemIcon><LocalPizzaIcon /></ListItemIcon>
+          <ListItemText primary="Pizzaria" />
         </ListItem>
 
         <ListItem button onClick={navigateTo("/pedidos")}>
