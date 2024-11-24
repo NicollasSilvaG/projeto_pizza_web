@@ -1,15 +1,16 @@
 /* Estilo para a barra de navegação do administrador */
 .appbar-administrador {
-  background-color: #ccc !important; /* Cor de fundo da barra de navegação */
-  padding: 10px; /* Adicionando um pouco de espaçamento ao redor */
+  background-color: #c54444 !important; /* Cor de fundo da barra de navegação */
+  padding: 2px; /* Adicionando um pouco de espaçamento ao redor */
 }
 
 /* Estilo para o título da página do administrador */
 .titulo-administrador {
-  text-align: center !important; /* Centraliza o título */
-  font-size: 24px; /* Ajustando o tamanho da fonte */
-  color: white; /* Mudando a cor do título para branco */
-  margin-bottom: 20px; /* Adicionando uma margem inferior */
+  margin-left: 12px; /* Alinha o título à esquerda, com um pequeno espaçamento */
+  color: white; /* Cor do título */
+  font-size: 32px; /* Ajusta o tamanho da fonte */
+  padding-top: 10px; /* Desce o título um pouco */
+  margin-bottom: 0; /* Remove a margem inferior, se necessário */
 }
 
 /* Estilo para o container da página */
