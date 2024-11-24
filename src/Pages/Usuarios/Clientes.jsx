@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { ClienteController } from "../../context/ClienteController"; // Controller para gerenciar requisições
-import { useNavigate } from "react-router-dom"; // Navegação entre páginas
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Divider, Collapse } from "@mui/material";
+import { ClienteController } from "../../context/ClienteController";
+import { useNavigate } from "react-router-dom";
+import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Divider, Collapse, Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import UserIcon from "@mui/icons-material/People";
@@ -12,14 +12,15 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
-import './StyleClientes.css'; // Arquivo de estilos
+import VisibilityIcon from "@mui/icons-material/Visibility"; // Ícone de olho
+import './StyleClientes.css';
 
 const drawerWidth = 240;
 
 const ClientePage = () => {
-    const [usuarios, setUsuarios] = useState([]); // Lista de usuários
-    const [error, setError] = useState(""); // Mensagem de erro
-    const [editandoUsuario, setEditandoUsuario] = useState(null); // Usuário em edição
+    const [usuarios, setUsuarios] = useState([]);
+    const [error, setError] = useState("");
+    const [editandoUsuario, setEditandoUsuario] = useState(null);
     const [formData, setFormData] = useState({
         nome: "",
         email: "",
@@ -30,29 +31,27 @@ const ClientePage = () => {
         cep: "",
         bairro: "",
         complemento: "",
-    }); // Dados do formulário
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false); // Estado do Drawer
-    const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false }); // Estado dos submenus
-    const navigate = useNavigate(); // Função de navegação
+    });
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
+    const [openModal, setOpenModal] = useState(false); // Estado para abrir a modal
+    const [selectedUsuario, setSelectedUsuario] = useState(null); // Armazena o usuário selecionado para exibir o modal
+    const navigate = useNavigate();
 
-    // Função para abrir e fechar o Drawer
     const toggleDrawer = (open) => () => {
         setIsDrawerOpen(open);
     };
 
-    // Função para logout
     const handleLogout = () => {
         navigate("/login");
         toggleDrawer(false)();
     };
 
-    // Função para navegar entre as páginas
     const navigateTo = (path) => () => {
         navigate(path);
         toggleDrawer(false)();
     };
 
-    // Função para buscar todos os usuários
     useEffect(() => {
         const fetchUsuarios = async () => {
             try {
@@ -62,17 +61,14 @@ const ClientePage = () => {
                 setError("Erro ao carregar usuários.");
             }
         };
-
         fetchUsuarios();
     }, []);
 
-    // Atualiza os campos do formulário
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    // Inicia a edição de um usuário
     const iniciarEdicao = (usuario) => {
         setEditandoUsuario(usuario.idUsuario);
         setFormData({
@@ -88,7 +84,6 @@ const ClientePage = () => {
         });
     };
 
-    // Salva as alterações feitas no usuário
     const salvarEdicao = async () => {
         try {
             await ClienteController.atualizarUsuario(editandoUsuario, formData);
@@ -116,7 +111,6 @@ const ClientePage = () => {
         }
     };
 
-    // Exclui um usuário
     const excluirUsuario = async (id) => {
         try {
             await ClienteController.deletarUsuario(id);
@@ -126,32 +120,49 @@ const ClientePage = () => {
         }
     };
 
-    // Função para alternar a visibilidade dos submenus
     const handleSubMenuToggle = (menu) => {
         setOpenSubMenu((prev) => ({ ...prev, [menu]: !prev[menu] }));
     };
 
-    // Menu do Drawer
+    const cancelarEdicao = () => {
+        setEditandoUsuario(null);
+        setFormData({
+            nome: "",
+            email: "",
+            telefone: "",
+            rua: "",
+            cidade: "",
+            uf: "",
+            cep: "",
+            bairro: "",
+            complemento: "",
+        });
+    };
+
+    const openAddressModal = (usuario) => {
+        setSelectedUsuario(usuario);
+        setOpenModal(true);
+    };
+
+    const closeAddressModal = () => {
+        setOpenModal(false);
+        setSelectedUsuario(null);
+    };
+
     const drawerList = () => (
         <div style={{ width: drawerWidth }} role="presentation">
             <div style={{ backgroundColor: '#c54444', textAlign: 'center', padding: '16px' }}>
-                <img 
-                    src="/assets/logotipo01.png" 
-                    alt="Logo" 
-                    style={{ width: '125px', height: 'auto' }} 
-                />
+                <img src="/assets/logotipo01.png" alt="Logo" style={{ width: '125px', height: 'auto' }} />
             </div>
             <List>
                 <ListItem button onClick={navigateTo("/home")}>
                     <ListItemIcon><HomeIcon /></ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItem>
-
                 <ListItem button onClick={navigateTo("/pedidos")}>
                     <ListItemIcon><OrderIcon /></ListItemIcon>
                     <ListItemText primary="Pedidos" />
                 </ListItem>
-
                 <ListItem button onClick={() => handleSubMenuToggle("users")}>
                     <ListItemIcon><UserIcon /></ListItemIcon>
                     <ListItemText primary="Usuários" />
@@ -167,30 +178,11 @@ const ClientePage = () => {
                         </ListItem>
                     </List>
                 </Collapse>
-
-                <ListItem button onClick={() => handleSubMenuToggle("products")}>
-                    <ListItemIcon><ProductIcon /></ListItemIcon>
-                    <ListItemText primary="Produtos" />
-                    {openSubMenu.products ? <ExpandLess /> : <ExpandMore />}
-                </ListItem>
-                <Collapse in={openSubMenu.products} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
-                        <ListItem button onClick={navigateTo("/produtos")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-                            <ListItemText primary="Gerenciar Produtos" />
-                        </ListItem>
-                        <ListItem button onClick={navigateTo("/categorias")} style={{ paddingLeft: drawerWidth * 0.1 }}>
-                            <ListItemText primary="Gerenciar Categorias" />
-                        </ListItem>
-                    </List>
-                </Collapse>
-
                 <ListItem button onClick={navigateTo("/cupons")}>
                     <ListItemIcon><CuponIcon /></ListItemIcon>
                     <ListItemText primary="Cupons" />
                 </ListItem>
-
                 <Divider sx={{ marginY: 2 }} />
-
                 <ListItem button onClick={navigateTo("/minha-conta")}>
                     <ListItemIcon><AccountCircle /></ListItemIcon>
                     <ListItemText primary="Minha Conta" />
@@ -205,7 +197,6 @@ const ClientePage = () => {
 
     return (
         <div>
-            {/* AppBar com classe personalizada */}
             <AppBar position="static" className="appbar-categorias">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer(true)}>
@@ -324,12 +315,18 @@ const ClientePage = () => {
                                     ) : (
                                         <>
                                             {usuario.rua}, {usuario.bairro}, {usuario.cidade}, {usuario.uf}
+                                            <IconButton onClick={() => openAddressModal(usuario)}>
+                                                <VisibilityIcon />
+                                            </IconButton>
                                         </>
                                     )}
                                 </td>
                                 <td>
                                     {editandoUsuario === usuario.idUsuario ? (
-                                        <button className="salvarEdicao" onClick={salvarEdicao}>Salvar</button>
+                                        <>
+                                            <button className="salvarEdicao" onClick={salvarEdicao}>Salvar</button>
+                                            <button className="cancelarEdicao" onClick={cancelarEdicao}>Cancelar</button>
+                                        </>
                                     ) : (
                                         <>
                                             <button className="editar" onClick={() => iniciarEdicao(usuario)}>Editar</button>
@@ -342,6 +339,28 @@ const ClientePage = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Modal de Endereço */}
+            <Dialog open={openModal} onClose={closeAddressModal}>
+                <DialogTitle>Endereço Completo</DialogTitle>
+                <DialogContent>
+                    {selectedUsuario && (
+                        <div>
+                            <p><strong>Rua:</strong> {selectedUsuario.rua}</p>
+                            <p><strong>Bairro:</strong> {selectedUsuario.bairro}</p>
+                            <p><strong>Cidade:</strong> {selectedUsuario.cidade}</p>
+                            <p><strong>UF:</strong> {selectedUsuario.uf}</p>
+                            <p><strong>CEP:</strong> {selectedUsuario.cep}</p>
+                            <p><strong>Complemento:</strong> {selectedUsuario.complemento}</p>
+                        </div>
+                    )}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeAddressModal} color="primary">
+                        Fechar
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
