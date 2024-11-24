@@ -146,13 +146,24 @@ button.excluir:hover {
 /* Estilos para os botões de salvar e cancelar */
 .salvarEdicao,
 .cancelarEdicao {
-  padding: 8px 16px;
-  margin: 5px;
+  padding: 10px 16px; /* Mesmo padding para ambos os botões */
+  margin: 0 5px; /* Espaçamento entre os botões */
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
+  width: 45%; /* Definindo a largura dos botões para que fiquem iguais */
+  display: inline-flex; /* Alinha os botões lado a lado */
+  justify-content: center; /* Garantir que o conteúdo do botão fique centralizado */
   transition: all 0.3s ease; /* Transição suave */
+}
+
+/* Usando flexbox para garantir o alinhamento correto e largura igual */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Adiciona espaçamento entre os botões */
+  width: 100%;
+  margin-top: 10px; /* Um pequeno espaço acima dos botões */
 }
 
 /* Espaçamento entre os botões */
