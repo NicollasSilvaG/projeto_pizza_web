@@ -1,0 +1,123 @@
+/* AppBar para a tela de Pizzaria */
+.appbar-pizzaria {
+    background-color: #c54444 !important;
+  }
+  
+  /* Título na AppBar */
+  .title-pizzaria {
+    text-align: left !important; 
+    padding-left: 20px; 
+    margin: 0; 
+    color: white; 
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Container principal */
+  .pizzaria-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+    margin-top: 60px; 
+  }
+  
+  /* Botão Criar Produto */
+  .btn-criar-produto {
+    position: absolute; 
+    top: -20px; 
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #d82837;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .btn-criar-produto:hover {
+    background-color: #7a1414;
+  }
+  
+  /* Estilo do Título Principal */
+  h1 {
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Mensagem de Erro */
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Grid de Produtos */
+  .pizzaria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px; 
+  }
+  
+  /* Card de Produto */
+  .pizzaria-card {
+    background-color: #fff7e6; /* Cor mais próxima de um tema de pizzaria */
+    border: 1px solid #e0c097;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    max-width: 220px;
+    margin: auto;
+  }
+  
+  .pizzaria-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .pizzaria-card h3 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Área da Imagem */
+  .produto-imagem {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Informações do Produto */
+  .produto-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .produto-info p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  
+  .produto-info strong {
+    color: #000;
+  }
+  
+  /* Ajustes gerais */
+  .container {
+    padding: 20px;
+  }
+  
+  .flex-grow {
+    flex-grow: 1;
+  }
+  

@@ -12,6 +12,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import './StyleAdministrador.css';
 
 const drawerWidth = 240;
@@ -103,6 +104,11 @@ const Administradores = () => {
         <ListItem button onClick={navigateTo("/home")}>
           <ListItemIcon><HomeIcon /></ListItemIcon>
           <ListItemText primary="Home" />
+        </ListItem>
+
+        <ListItem button onClick={navigateTo("/pizzaria")}>
+          <ListItemIcon><LocalPizzaIcon /></ListItemIcon>
+          <ListItemText primary="Pizzaria" />
         </ListItem>
 
         <ListItem button onClick={navigateTo("/pedidos")}>

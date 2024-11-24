@@ -12,7 +12,8 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import ExpandLess from "@mui/icons-material/ExpandLess";
-import VisibilityIcon from "@mui/icons-material/Visibility"; // Ícone de olho
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import './StyleClientes.css';
 
 const drawerWidth = 240;
@@ -158,6 +159,10 @@ const ClientePage = () => {
                 <ListItem button onClick={navigateTo("/home")}>
                     <ListItemIcon><HomeIcon /></ListItemIcon>
                     <ListItemText primary="Home" />
+                </ListItem>
+                <ListItem button onClick={navigateTo("/pizzaria")}>
+                    <ListItemIcon><LocalPizzaIcon /></ListItemIcon>
+                    <ListItemText primary="Pizzaria" />
                 </ListItem>
                 <ListItem button onClick={navigateTo("/pedidos")}>
                     <ListItemIcon><OrderIcon /></ListItemIcon>

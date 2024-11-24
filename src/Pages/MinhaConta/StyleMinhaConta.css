@@ -1,0 +1,149 @@
+/* AppBar para Minha Conta */
+.appbar-minha-conta {
+    background-color: #c54444;
+    color: white;
+  }
+  
+  /* Título na AppBar */
+  .title-minha-conta {
+    text-align: left;
+    padding-left: 20px;
+    margin: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  /* Container principal */
+  .minha-conta-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    margin-top: 60px;
+    background-color: #f4f6f7; /* Fundo claro para contraste */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Seções da conta */
+  .secao-minha-conta {
+    margin-bottom: 20px;
+  }
+  
+  .secao-titulo {
+    font-size: 18px;
+    font-weight: bold;
+    color: #c54444;
+    border-bottom: 2px solid #ecf0f1;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  
+  /* Formulário e entradas */
+  .formulario-conta input,
+  .formulario-conta select,
+  .formulario-conta textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .formulario-conta input:focus,
+  .formulario-conta select:focus,
+  .formulario-conta textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px #c54444;
+  }
+  
+  /* Botões */
+  .btn-salvar {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-salvar:hover {
+    background-color: #27ae60;
+  }
+  
+  .btn-cancelar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-cancelar:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Segurança - alterar senha */
+  .secao-seguranca {
+    margin-top: 20px;
+  }
+  
+  .input-seguranca {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-seguranca label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input-seguranca input {
+    padding: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+  }
+  
+  .input-seguranca input:focus {
+    border-color: #e67e22;
+    outline: none;
+    box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
+  }
+  
+  /* Mensagens de erro e sucesso */
+  .mensagem-erro {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  .mensagem-sucesso {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* Ajuste geral */
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .flex-item {
+    flex: 1 1 48%;
+    margin-bottom: 20px;
+  }
+  
+  .flex-item-full {
+    flex: 1 1 100%;
+  }
+  
