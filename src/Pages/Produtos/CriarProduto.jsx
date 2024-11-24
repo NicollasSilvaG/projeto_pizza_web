@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ProdutoService from '../../context/ProdutoController'; // Importar serviço para manipulação de produto
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ProdutoService from '../../context/ProdutoController'; // Serviço de produto
 import './StyleCriarProduto.css'; // Estilo do formulário
 
 const CriarProduto = () => {
@@ -8,19 +9,18 @@ const CriarProduto = () => {
     const [preco, setPreco] = useState('');
     const [descricao, setDescricao] = useState('');
     const [tamanho, setTamanho] = useState('');
-    const [imagem, setImagem] = useState(null); // Armazenar o arquivo
+    const [imagem, setImagem] = useState(null);
     const [categoria, setCategoria] = useState('');
-    const [categorias, setCategorias] = useState([]); // Lista de categorias
+    const [categorias, setCategorias] = useState([]);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    // Simulação de carregamento das categorias no início
     useEffect(() => {
         const fetchCategorias = async () => {
             try {
-                const response = await ProdutoService.getCategorias(); // API que retorna categorias
+                const response = await ProdutoService.getCategorias();
                 if (Array.isArray(response) && response.length > 0) {
-                    setCategorias(response); // Armazena categorias no estado
+                    setCategorias(response);
                 } else {
                     setError('Nenhuma categoria encontrada.');
                 }
@@ -29,24 +29,23 @@ const CriarProduto = () => {
                 console.error('Erro ao carregar categorias:', error);
             }
         };
-    
+
         fetchCategorias();
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const formData = new FormData();
         formData.append('nome', nome);
         formData.append('quantidade', quantidade);
         formData.append('preco', preco);
         formData.append('descricao', descricao);
         formData.append('tamanho', tamanho);
-        formData.append('imagem', imagem); // Adiciona o arquivo anexado
+        formData.append('imagem', imagem);
         formData.append('categoria', JSON.stringify({ tipo: categoria, idCategoria: categorias.find((c) => c.tipo === categoria)?.id }));
 
         try {
-            await ProdutoService.create(formData); // Envia o formulário com os dados
+            await ProdutoService.create(formData);
             setSuccess("Produto cadastrado com sucesso!");
             setError(null);
         } catch (error) {
@@ -57,13 +56,15 @@ const CriarProduto = () => {
 
     return (
         <div className="page-container">
-            {/* Barra de navegação (App Bar) */}
+            {/* AppBar com a seta de voltar */}
             <div className="app-bar">
+                <button className="btn-voltar" onClick={() => window.history.back()}>
+                    <ArrowBackIcon style={{ fontSize: 28, color: "white" }} />
+                </button>
                 <h1>Criar Produto</h1>
-                <button className="btn-voltar" onClick={() => window.history.back()}>X</button>
             </div>
 
-            {/* Contêiner do formulário */}
+            {/* Formulário */}
             <div className="form-container">
                 {success && <p className="success">{success}</p>}
                 {error && <p className="error">{error}</p>}
@@ -79,7 +80,6 @@ const CriarProduto = () => {
                             required
                         />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="quantidade">Quantidade:</label>
                         <input
@@ -90,7 +90,6 @@ const CriarProduto = () => {
                             required
                         />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="preco">Preço:</label>
                         <input
@@ -102,7 +101,6 @@ const CriarProduto = () => {
                             required
                         />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="descricao">Descrição:</label>
                         <textarea
@@ -112,7 +110,6 @@ const CriarProduto = () => {
                             required
                         ></textarea>
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="tamanho">Tamanho:</label>
                         <select
@@ -127,17 +124,15 @@ const CriarProduto = () => {
                             <option value="Grande">Grande</option>
                         </select>
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="imagem">Imagem:</label>
                         <input
                             type="file"
                             id="imagem"
-                            onChange={(e) => setImagem(e.target.files[0])} // Captura o arquivo
+                            onChange={(e) => setImagem(e.target.files[0])}
                             required
                         />
                     </div>
-
                     <div className="form-group">
                         <label htmlFor="categoria">Categoria:</label>
                         <select
@@ -147,21 +142,14 @@ const CriarProduto = () => {
                             required
                         >
                             <option value="">Selecione uma categoria</option>
-                            {categorias.length === 0 ? (
-                                <option disabled>Carregando categorias...</option>
-                            ) : (
-                                categorias.map((cat) => (
-                                    <option key={cat.id} value={cat.tipo}>
-                                        {cat.tipo}
-                                    </option>
-                                ))
-                            )}
+                            {categorias.map((cat) => (
+                                <option key={cat.id} value={cat.tipo}>
+                                    {cat.tipo}
+                                </option>
+                            ))}
                         </select>
                     </div>
-
-                    <button type="submit" className="btn-submit">
-                        Criar Produto
-                    </button>
+                    <button type="submit" className="btn-submit">Criar Produto</button>
                 </form>
             </div>
         </div>
