@@ -191,7 +191,7 @@ const Categorias = () => {
               value={novoTipo}
               onChange={(e) => setNovoTipo(e.target.value)}
             />
-            <button onClick={handleCriarCategoria}>+ Adicionar</button> {/* Cor original mantida */}
+            <button onClick={handleCriarCategoria}>Adicionar Categorias</button> {/* Cor original mantida */}
           </div>
         )}
 

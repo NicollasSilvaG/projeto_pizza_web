@@ -1,120 +1,161 @@
-/* Estilo para o container principal */
-.cupons-container {
-  max-width: 900px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Estilo geral da página */
+body {
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
 }
 
-/* Título */
-.cupons-container h1 {
+/* AppBar de Cupons (estilo da AppBar de Categorias) */
+.appbar-cupons {
+  background-color: #c54444 !important;  /* Cor de fundo da AppBar */
+}
+
+.title-cupons {
+  text-align: left !important;  /* Alinha o título à esquerda */
+  padding-left: 20px;  /* Espaço à esquerda para o título */
+  margin-top: 0;  /* Remove qualquer margem superior */
+  margin: 0;  /* Remove margens desnecessárias */
+  color: white;  /* Cor do texto do título */
+}
+
+/* Container principal das Cupons */
+.cupons-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Tabela de Cupons */
+.cupons-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.cupons-table th,
+.cupons-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
 }
 
-/* Estilo para o formulário */
+.cupons-table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.cupons-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.cupons-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Formulário de Criação de Cupom */
 .formulario {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: flex-start;
   margin-bottom: 20px;
 }
 
 .formulario input {
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
 }
 
 .formulario button {
-  padding: 10px;
-  background-color: #c54444;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 12px 24px;
   font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.formulario button:hover {
-  background-color: #c54444;
-}
-
-/* Tabela de cupons */
-.cupons-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.cupons-table th,
-.cupons-table td {
-  text-align: left;
-  padding: 12px;
-  border: 1px solid #ddd;
-}
-
-.cupons-table th {
-  background-color: #c54444;
   color: white;
-}
-
-.cupons-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.cupons-table tr:hover {
-  background-color: #ddd;
-}
-
-/* Estilo para os botões de ações */
-.cupons-table button {
-  padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
 }
 
-.cupons-table button:first-child {
-  background-color: #2196f3;
+/* Botões específicos para Adicionar, Salvar e Cancelar */
+.formulario .adicionar {
+  background-color: #c54444 !important;  /* Cor para o botão Adicionar */
+}
+
+.formulario .adicionar:hover {
+  background-color: #b33333; /* Tom mais escuro para hover */
+}
+
+.formulario .salvar-alteracoes {
+  background-color: #4CAF50;  /* Cor para o botão Salvar Alterações */
+}
+
+.formulario .salvar-alteracoes:hover {
+  background-color: #45a049; /* Tom mais escuro para hover */
+}
+
+.formulario .cancelar {
+  padding: 14px 28px;
+  font-size: 18px;
+  background-color: #f44336;
+}
+
+.formulario .cancelar:hover {
+  background-color: #e53935;
+}
+
+/* Botões Editar e Excluir */
+.cupons-table .editar {
+  padding: 6px 12px;
+  background-color: #ffd700; /* Cor dourada */
   color: white;
-  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.cupons-table button:first-child:hover {
-  background-color: #1e88e5;
+.cupons-table .editar:hover {
+  background-color: #ffcc00; /* Tom mais escuro ao passar o mouse */
 }
 
-.cupons-table button:last-child {
+.cupons-table .excluir {
+  padding: 6px 12px;
   background-color: #f44336;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.cupons-table button:last-child:hover {
+.cupons-table .excluir:hover {
   background-color: #e53935;
 }
 
 /* Responsividade */
 @media (max-width: 600px) {
   .cupons-container {
-      padding: 10px;
+    padding: 10px;
   }
 
   .formulario {
-      flex-direction: column;
+    flex-direction: column;
+  }
+
+  .formulario input {
+    margin-right: 0;
+    margin-bottom: 10px;
   }
 
   .cupons-table th,
   .cupons-table td {
-      font-size: 14px;
-      padding: 8px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .formulario button {
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
