@@ -23,7 +23,7 @@ const Pedidos = () => {
   const [error, setError] = useState('');
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState({ users: false, products: false });
-  const [expandido, setExpandido] = useState({}); // Armazena o estado de cada pedido (expandido ou não)
+  const [expandido, setExpandido] = useState({});
 
   const navigate = useNavigate();
 
@@ -230,7 +230,6 @@ const Pedidos = () => {
                 )}
               </div>
 
-              {/* Setando a seta para expandir/colapsar */}
               <div
                 className="seta-expandir"
                 onClick={() => toggleExpandir(pedido.idPedido)}
@@ -238,7 +237,6 @@ const Pedidos = () => {
                 {expandido[pedido.idPedido] ? '▲' : '▼'}
               </div>
 
-              {/* Lista de produtos - visível quando o estado de expandir for verdadeiro */}
               <div className={`produtos-list ${expandido[pedido.idPedido] ? 'expandido' : ''}`}>
                 <h3>Produtos no Pedido:</h3>
                 {pedido.produtos && pedido.produtos.length > 0 ? (

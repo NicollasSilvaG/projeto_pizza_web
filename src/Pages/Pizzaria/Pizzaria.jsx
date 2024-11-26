@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { buscarTodasPizzarias } from '../../context/PizzariaController';  // Importe a função de buscar todas as pizzarias
-import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider, Button } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText, ListItemIcon, Collapse, Divider, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import OrderIcon from "@mui/icons-material/Assignment";
@@ -140,23 +140,6 @@ const BuscarPizzaria = () => {
     </div>
   );
 
-  // Funções de editar e excluir
-  const handleEdit = (id) => {
-    // Navegar para a tela de edição de pizzaria com o id
-    navigate(`/editar-pizzaria/${id}`);
-  };
-
-  const handleDelete = async (id) => {
-    // Excluir a pizzaria, chamar API ou ação para exclusão
-    try {
-      // Exemplo de chamada fictícia para excluir a pizzaria
-      // eslint-disable-next-line no-undef
-      await deletePizzaria(id);
-      setPizzarias(pizzarias.filter(pizzaria => pizzaria.idPizzaria !== id));
-    } catch (error) {
-      setErro('Erro ao excluir pizzaria.');
-    }
-  };
 
   return (
     <div>
@@ -191,8 +174,6 @@ const BuscarPizzaria = () => {
                 <p><strong>Endereço:</strong> {pizzaria.rua}, {pizzaria.bairro}, {pizzaria.cidade} - {pizzaria.uf}, {pizzaria.cep}</p>
                 <p><strong>Razão Social:</strong> {pizzaria.razao_social}</p>
                 <p><strong>Horário de Funcionamento:</strong> {pizzaria.horarioFuncionamento}</p>
-                <Button className="btn-editar" onClick={() => handleEdit(pizzaria.idPizzaria)}>Editar</Button>
-                <Button className="btn-excluir" onClick={() => handleDelete(pizzaria.idPizzaria)}>Excluir</Button>
               </div>
             ))}
           </div>

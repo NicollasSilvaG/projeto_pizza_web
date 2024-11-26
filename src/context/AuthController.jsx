@@ -6,13 +6,12 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  // Função para cadastrar um novo usuário
   const Cadastro = async (dadosUsuario) => {
     try {
-      const response = await api.post("/autenticacao/cadastrar", dadosUsuario); // Ajustado para a rota correta
+      const response = await api.post("/autenticacao/cadastrar", dadosUsuario);
       if (response.status === 200) {
-        console.log("Usuario Cadastrado com Sucesso!!"); // Mensagem de sucesso
-        return null; // Retorna null em caso de sucesso
+        console.log("Usuario Cadastrado com Sucesso!!");
+        return null;
       }
     } catch (error) {
       console.error("Erro ao cadastrar usuário:", error.response?.data);

@@ -15,7 +15,8 @@ import ProdutosList from '../Pages/Produtos/Produtos';
 import CriarProduto from '../Pages/Produtos/CriarProduto';
 import Categorias from '../Pages/Categorias/Categorias';
 import BuscarPizzaria from '../Pages/Pizzaria/Pizzaria';
-import TelaUsuarioLogado from '../Pages/MinhaConta/TelaUsuarioLogado';
+import MinhaConta from '../Pages/MinhaConta/MinhaConta';
+import EditarProduto from '../Pages/Produtos/EditarProduto';
 
 const Private = ({ Item }) => {
   const { signed } = useAuth();
@@ -46,10 +47,11 @@ const RoutesApp = () => {
           <Route path="/administradores" element={<Private Item={Administradores} />} />
           <Route path="/produtos" element={<Private Item={ProdutosList} />} />
           <Route path="/criarproduto" element={<Private Item={CriarProduto} />} />
+          <Route path="/editarproduto/:id" element={<EditarProduto />} />
           <Route path="/categorias" element={<Private Item={Categorias} />} />
           <Route path="/cupons" element={<Private Item={Cupons} />} />
           <Route path="/pizzaria" element={<Private Item={BuscarPizzaria} />} />
-          <Route path="/minhaconta" element={<Private Item={TelaUsuarioLogado} />} />
+          <Route path="/minha-conta" element={<Private Item={MinhaConta} />} />
 
           </Routes>
       </Fragment>

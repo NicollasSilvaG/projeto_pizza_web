@@ -11,7 +11,6 @@ import CuponIcon from "@mui/icons-material/LocalOffer";
 import ExpandLess from "@mui/icons-material/ExpandLess"; 
 import ExpandMore from "@mui/icons-material/ExpandMore"; 
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import LocationOnIcon from '@mui/icons-material/LocationOn'; 
 //import { useAuth } from "../../Hooks/useAuth";
 import LocalPizzaIcon from '@mui/icons-material/LocalPizza';
 import "./StyleHome.css";  
@@ -106,10 +105,6 @@ const Home = () => {
 
         <Divider sx={{ marginY: 2 }} />
 
-        <ListItem button onClick={navigateTo("/minhaconta")}>
-          <ListItemIcon><AccountCircle /></ListItemIcon>
-          <ListItemText primary="Minha Conta" />
-        </ListItem>
         
         <ListItem button onClick={handleLogout}>
           <ListItemIcon><LogoutIcon /></ListItemIcon>

@@ -215,7 +215,6 @@ const Cupons = () => {
       </Drawer>
 
       <div className="cupons-container">
-        {/* Formulário de criação de cupom */}
         <div className="formulario">
           <input
             type="text"
@@ -241,20 +240,17 @@ const Cupons = () => {
             value={quantidade}
             onChange={(e) => setQuantidade(e.target.value)}
           />
-          {/* Botões diferenciados para salvar ou adicionar */}
           {editandoId ? (
             <button className="salvar-alteracoes" onClick={handleSalvarCupom}>Salvar Alterações</button>
           ) : (
             <button className="adicionar" onClick={handleSalvarCupom}>Adicionar Cupom</button>
           )}
           
-          {/* Mostrar o botão Cancelar apenas se estiver editando um cupom */}
           {editandoId && (
             <button className="cancelar" onClick={handleCancelar}>Cancelar</button>
           )}
         </div>
 
-        {/* Tabela de cupons */}
         <table className="cupons-table">
           <thead>
             <tr>

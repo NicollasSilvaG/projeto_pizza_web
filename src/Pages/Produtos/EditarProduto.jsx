@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ProdutoService from '../../context/ProdutoController'; // Serviço de produto
 import './StyleCriarProduto.css'; // Estilo do formulário
+import { useParams } from 'react-router-dom';
 
 const EditarProduto = ({ match }) => {
+    const {id: produtoId} = useParams();
     const [nome, setNome] = useState('');
     const [quantidade, setQuantidade] = useState('');
     const [preco, setPreco] = useState('');
@@ -15,7 +17,6 @@ const EditarProduto = ({ match }) => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     
-    const produtoId = match.params.id; // Assumindo que o id do produto está vindo pela URL
 
     useEffect(() => {
         const fetchCategorias = async () => {
@@ -164,7 +165,7 @@ const EditarProduto = ({ match }) => {
                         >
                             <option value="">Selecione uma categoria</option>
                             {categorias.map((cat) => (
-                                <option key={cat.id} value={cat.tipo}>
+                                <option key={cat.idCategoria} value={cat.id}>
                                     {cat.tipo}
                                 </option>
                             ))}
